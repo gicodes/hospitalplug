@@ -24,8 +24,21 @@ export const equipmentsAndFacilities = {
   hasTheatre: "Theatre",
 };
 
-export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
-  const [local, setLocal] = useState(form.operations || {
+export default function Step3({ onBack, onNext, setForm }: StepProps) {
+  const [local, setLocal] = useState<{
+    schedule: string;
+    openingHours: string;
+    serviceSpecialties: string[];
+    hasEmergency: boolean;
+    hasAmbulance: boolean;
+    hasFoodCanteen: boolean;
+    securePremises: boolean;
+    numberOfHealthWorkers: string;
+    has247PowerSupply: boolean;
+    hasSteadyWaterSupply: boolean;
+    hashealthcareFacilities: boolean;
+    modeOfPayment: string[];
+  }>({
     schedule: '', 
     openingHours: '', 
     serviceSpecialties: [],
@@ -33,7 +46,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
     hasAmbulance: false,
     hasFoodCanteen: false,
     securePremises: false,
-    numberOfHealthWorkers: 0,
+    numberOfHealthWorkers: '',
     has247PowerSupply: false,
     hasSteadyWaterSupply: false,
     hashealthcareFacilities: false,
@@ -41,7 +54,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
   });
 
   const handleSubmit = () => {
-    setForm((prev: any) => ({
+    setForm((prev: Record<string, unknown>) => ({
       ...prev,
       operations: local,
     }));
@@ -49,7 +62,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
   };
 
   const handleBack = () => {
-    setForm((prev: any) => ({
+    setForm((prev: Record<string, unknown>) => ({
       ...prev,
       operations: local,
     }));

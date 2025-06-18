@@ -11,18 +11,23 @@ const HospitalRegister = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    if(!error && !loading) console.log("no errors")
+
     try {
       setLoading(true);
-      const result = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/hospital/register/request-code`, {
+      await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/hospital/register/request-code`, {
         email: email,
       });
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Verification failed');
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || 'Verification failed');
+      } else {
+        setError('Verification failed');
+      }
     } finally {
       setLoading(false);
     }
-    
+
     console.log('Hospital registration credentials:', { email });
   };
 

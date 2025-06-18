@@ -21,7 +21,7 @@ const Header = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const toggleAuthMenu = () => setAuthMenuOpen((prev) => !prev);
 
-  const { user, role, loading } = useAuth();
+  const { user, role, } = useAuth();
 
   return (
     <div className={styles.navbar}>

@@ -1,8 +1,7 @@
-import { RiCodeAiFill, RiGoogleFill, RiVercelFill, RiWalletFill } from 'react-icons/ri';
+import { RiCodeAiFill, RiVercelFill } from 'react-icons/ri';
 import styles from './page.module.css';
 import { FcGoogle } from 'react-icons/fc';
-import { IoLogoVercel } from 'react-icons/io5';
-import { TbBrandVercelFilled, TbPaywall } from 'react-icons/tb';
+import { TbPaywall } from 'react-icons/tb';
 
 export const FooterGrid = () => {
   return (

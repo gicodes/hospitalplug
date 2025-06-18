@@ -33,7 +33,7 @@ const Hero = () => {
       <div id='hero-text'>
         <div className="text-center">
           <h2>
-            Let's connect y<SiWorldhealthorganization size={25}/>u
+            Let&#39;s connect y<SiWorldhealthorganization size={25}/>u
           </h2>
           <h2>to  healthcare services <BsFillPlugFill /> </h2>
           <h4>Find Top Hospitals・Book Service・Reserve Care・Follow up</h4>

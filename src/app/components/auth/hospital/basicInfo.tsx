@@ -6,8 +6,25 @@ import styles from '../../../auth/hospital/onboarding/page.module.css';
 import { hospitalTypes } from '@/app/assets/hospitalTypes';
 import { countries, majorCitiesByCountry, statesInNigeria, lgasInNigeria } from '@/app/assets/locations';
 
-export default function Step1({ onNext, form, setForm }: StepProps) {
-  const [local, setLocal] = useState(form.basic || {
+type LocalState = {
+  name: string;
+  contact: {
+    phone: string;
+    whatsapp: string;
+    email: string;
+    website: string;
+  };
+  address: {
+    country: string;
+    state: string;
+    city: string;
+    street: string;
+  };
+  type: string[];
+};
+
+export default function Step1({ onNext, setForm }: StepProps) {
+  const [local, setLocal] = useState<LocalState>({
     name: '',
     contact: {
       phone: '',
@@ -25,7 +42,8 @@ export default function Step1({ onNext, form, setForm }: StepProps) {
   });
 
   const handleSubmit = () => {
-    setForm((prev: any) => ({ ...prev, basic: local }));
+    setForm((prev: Record<string, unknown>
+) => ({ ...prev, basic: local }));
     onNext();
   };
 
@@ -125,7 +143,7 @@ export default function Step1({ onNext, form, setForm }: StepProps) {
               checked={local.type.includes(t.name)}
               onChange={e => {
                 const checked = e.target.checked;
-                setLocal((prev: { type: any[]; }) => ({
+                setLocal((prev: LocalState) => ({
                   ...prev,
                   type: checked
                     ? [...prev.type, t.name]

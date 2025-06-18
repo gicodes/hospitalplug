@@ -8,7 +8,7 @@ import { LiaBathSolid, LiaBedSolid, LiaToiletSolid } from "react-icons/lia";
 
 // Step 3, 4 (Optional) and 5: Submit Docs, Set Business & Final Submission
 export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
-  const [local, setLocal] = useState(form.business || {
+  const [local, setLocal] = useState({
     hostType: '',
     roomSize: '',
     roomPrice: '',
@@ -18,8 +18,8 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
     remark: '',
   });
 
-  const [isLoading, setLoading] = useState(false);
-  const [isVetting, setVetting] = useState(false);
+  // const [isLoading, setLoading] = useState(false);
+  // const [isVetting, setVetting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const [isVetted, setIsVetted] = useState(false);
@@ -27,7 +27,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
   const [isSubmitting, setSubmitting] = useState(false);
 
   const handleSave = async () => {
-    setForm((prev: any) => ({ ...prev, business: local }));
+    setForm((prev: typeof form) => ({ ...prev, business: local }));
     setSaving(true);
 
     try {
@@ -46,7 +46,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
   };
 
   const handleSubmit = async () => {
-    setForm((prev: any) => ({ ...prev, business: local }));
+    setForm((prev: typeof form) => ({ ...prev, business: local }));
 
     const finalPayload = {
       ...form,
@@ -55,7 +55,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
 
     try {
       setSubmitting(true);
-      const res = await axios.post('/api/auth/hospital/register/submit', finalPayload);
+      await axios.post('/api/auth/hospital/register/submit', finalPayload);
       alert('Successfully submitted!');
       onNext(); // or redirect
       // alert-- Verifying these information may take some time. 
@@ -188,8 +188,8 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
               className={styles.input}
               type={showPassword ? "text" : "password"}
               placeholder="Password"
-              value={form.password || ''}
-              onChange={e => setForm((prev: any) => ({ ...prev, password: e.target.value }))}
+              value={typeof form.password === 'string' ? form.password : ''}
+              onChange={e => setForm((prev: typeof form) => ({ ...prev, password: e.target.value }))}
               autoComplete="new-password"
             />
             <button
@@ -206,8 +206,8 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
               className={styles.input}
               type={showPassword ? "text" : "password"}
               placeholder="Confirm Password"
-              value={form.confirmPassword || ''}
-              onChange={e => setForm((prev: any) => ({ ...prev, confirmPassword: e.target.value }))}
+              value={typeof form.password === 'string' ? form.password : ''}
+              onChange={e => setForm((prev: typeof form) => ({ ...prev, confirmPassword: e.target.value }))}
               autoComplete="new-password"
             />
             <button

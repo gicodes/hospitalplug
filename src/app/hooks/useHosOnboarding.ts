@@ -4,7 +4,7 @@ export const useHospitalOnboarding = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [verificationCode, setCode] = useState('');
-  const [form, setForm] = useState<any>({
+  const [form, setForm] = useState({
     basic: {},
     operations: {},
     business: {},

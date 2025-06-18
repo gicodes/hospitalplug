@@ -100,7 +100,7 @@ const Login: React.FC<LoginProps> = ({
         { profile=="user" && <AltAuth />}
 
         <a href={`/auth/${profile}/register`} className={styles.authRedirect}>
-          <p> Don't have an account? Sign up </p>
+          <p> Don&#39;t have an account? Sign up </p>
         </a>
       </form>
     </div>

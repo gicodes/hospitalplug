@@ -4,15 +4,15 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import styles from '@/app/auth/hospital/onboarding/page.module.css';
 
+
 export interface StepProps {
   userEmail?: string;
   onVerified?: (token: string) => void;
   onWrongEmail?: () => void;
   onNext: () => void;
   onBack?: () => void;
-  // Callback for parsing form data between steps i.e. has healthcareFacilities (2) --> businessInfo (4)
-  form: any;
-  setForm: React.Dispatch<React.SetStateAction<any>>;
+  form: Record<string, unknown>;
+  setForm: React.Dispatch<React.SetStateAction<Record<string, unknown>>>;
 }
 
 const VerifyOTP: React.FC<StepProps> = ({onNext, userEmail, onVerified, onWrongEmail }) => {
@@ -34,17 +34,24 @@ const VerifyOTP: React.FC<StepProps> = ({onNext, userEmail, onVerified, onWrongE
     }
 
     onNext(); // move to Step 2
-  } catch (err: any) {
-    setError(err.response?.data?.message || 'Verification failed');
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      setError(err.response?.data?.message || 'Verification failed');
+    } else if (err instanceof Error) {
+      setError(err.message || 'Verification failed');
+    } else {
+      setError('Verification failed');
+    }
   } finally {
     setLoading(false);
   }
 };
 
   return (
+    <>
     <div className={styles.step0}>
       <p>
-        We've sent a verification code to {userEmail || "your e-mail address"}.{' '}
+        We&#39;ve sent a verification code to {userEmail || "your e-mail address"}.{' '}
         <span className='txt-danger' onClick={onWrongEmail}>Wrong email?</span>
       </p>
 
@@ -96,6 +103,8 @@ const VerifyOTP: React.FC<StepProps> = ({onNext, userEmail, onVerified, onWrongE
         {loading ? 'Verifying...' : 'Verify'}
       </button>
     </div>
+    <div className={styles.minHeight}/>
+    </>
   );
 };
 
