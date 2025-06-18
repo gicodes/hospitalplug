@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
 import "./globals.css";
+
 import Header from "./header";
+import Footer from "./footer";
+import type { Metadata } from "next";
 import styles from './page.module.css';
 import { Geist, Geist_Mono } from "next/font/google";
-import Footer from "./footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Hospital 🔌Plug",
-  description: "Hospital Plug is a platform connecting healthcare providers, facilities, and professionals to streamline hospital operations, staffing, and resource management.",
+  description: "Hospital Plug is a platform connecting  healthcare providers, facilities, and professionals to streamline hospital operations, staffing, and resource management.",
 };
 
 export default function RootLayout({

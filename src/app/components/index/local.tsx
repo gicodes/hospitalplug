@@ -69,7 +69,7 @@ const Local = () => {
   return (
     <div className={styles.local}>
       <h5>Hospitals & Care Centers Near You</h5>
-      <p>Find the best healthcare providers in your area</p>
+      <p>Find the best  healthcare providers in your area</p>
       
       <ul className={styles.list}>
         {localHospitals.map((hospital, idx) => (

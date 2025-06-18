@@ -4,6 +4,7 @@ import Features from "./components/index/features";
 import AboutUs from "./components/index/about";
 import Local from "./components/index/local";
 import HowItWorks from "./components/index/operations";
+import { FooterGrid } from "./footer";
 
 export default function Home() {
   return (
@@ -23,6 +24,10 @@ export default function Home() {
         </section>
         <AboutUs />
       </main>
+      
+      <footer className={styles.footer}>
+        <FooterGrid />
+      </footer>
     </div>
   );
 }

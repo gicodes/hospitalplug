@@ -1,9 +1,12 @@
+import { RiCodeAiFill, RiGoogleFill, RiVercelFill, RiWalletFill } from 'react-icons/ri';
 import styles from './page.module.css';
+import { FcGoogle } from 'react-icons/fc';
+import { IoLogoVercel } from 'react-icons/io5';
+import { TbBrandVercelFilled, TbPaywall } from 'react-icons/tb';
 
-export default function Footer() {
+export const FooterGrid = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footerGrid}>
+    <div className={styles.footerGrid}>
         <div>
           <h4 className={styles.footerTitle}>Hospital Plug</h4>
           <a href="/about" className={styles.footerLink}>About Us</a>
@@ -23,22 +26,25 @@ export default function Footer() {
         <div>
           <h4 className={styles.footerTitle}>Opportunities</h4>
           <a href="/collaborate" className={styles.footerLink}>Partner With Us</a>
-          <a href="/careers" className={styles.footerLink}>Healthcare Jobs</a>
+          <a href="/careers" className={styles.footerLink}> healthcare Jobs</a>
           <a href="/ngo" className={styles.footerLink}>NGOs & Charity</a>
         </div>
 
         <div>
           <h4 className={styles.footerTitle}>Powered By</h4>
-          <a href="https://vercel.com" target="_blank" rel="noopener" className={styles.footerLink}>Next</a>
-          <a href="https://google.com" target="_blank" rel="noopener" className={styles.footerLink}>Google </a>
-          <a href="https://paystack.com" target="_blank" rel="noopener" className={styles.footerLink}>Paystack</a>
-          <a href="https://gicodes.vercel.app" target="_blank" rel="noopener" className={styles.footerLink}>GiCodes</a>
+          <a href="https://google.com" target="_blank" rel="noopener" className={styles.footerLink}><FcGoogle /> google </a>
+          <a href="https://vercel.com" target="_blank" rel="noopener" className={styles.footerLink}><RiVercelFill color='#132257' /> vercel</a>
+          <a href="https://paystack.com" target="_blank" rel="noopener" className={styles.footerLink}><TbPaywall /> paystack</a>
+          <a href="https://gicodes.vercel.app" target="_blank" rel="noopener" className={styles.footerLink}><RiCodeAiFill /> gi_codes</a>
         </div>
       </div>
+  )
+}
 
-      <div className={styles.footerBottom}>
-        © {new Date().getFullYear()} Hospital Plug. All rights reserved.
-      </div>
+export default function Footer() {
+  return (
+    <footer className={styles.footerBottom}>
+      © {new Date().getFullYear()} Hospital Plug. All rights reserved.
     </footer>
   );
 }

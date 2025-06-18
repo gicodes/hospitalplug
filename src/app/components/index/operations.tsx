@@ -5,7 +5,7 @@ const steps = [
   {
     icon: <FaSearch />,
     title: "Search for Hospitals",
-    text: "Go to Home, or scroll to the top of this page to find hospitals, clinics, and healthcare providers near you."
+    text: "Go to Home, or scroll to the top of this page to find hospitals, clinics, and  healthcare providers near you."
   },
   {
     icon: <FaCalendarCheck />,

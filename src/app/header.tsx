@@ -55,8 +55,11 @@ const Header = () => {
           <button className='btn-secondary'>See Subscription</button>
         ) : (
           <>
-            <button className='btn-primary'>Register a Hospital</button>
-            <button className='btn-secondary'>Hospital Sign in</button>
+            <button className='btn-primary'>
+              <a href='/auth/hospital/register'>Register a Hospital</a>
+            </button>
+            <button className='btn-secondary'>
+              <a href='/auth/hospital'>Hospital Sign in</a></button>
           </>
         )}
 
@@ -84,8 +87,8 @@ const Header = () => {
               </>
             ) : (
               <>
-                <a href="/auth/signup">User Sign up</a>
-                <a href="/auth/signin">User Sign in</a>
+                <a href="/auth/user">User Sign in</a>
+                <a href="/auth/user/register">User Sign up</a>
               </>
             )}
           </div>

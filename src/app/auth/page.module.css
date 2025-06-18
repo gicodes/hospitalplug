@@ -1,0 +1,290 @@
+.page {
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+  height: 100vh;
+  max-width: 600px;
+}
+
+.authHeader {
+  text-align: center;
+  margin: 25px auto;
+
+  h1 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 15px;
+    font-weight: 400;
+  }
+}
+
+.registerContainer {
+  margin: auto;
+  padding: 10px 0;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .registerForm {
+    gap: 20px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 600px) {
+      padding: 10px;
+    }
+
+    .formGroup {
+      width: 100%;
+      font-size: 15px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      border: 0.1px solid ghostwhite;
+
+      label {
+        padding: 10px 0;
+        min-width: 100px;
+
+        span { color: red;}
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        outline: none;
+        color: black;
+        border-radius: 5px;
+        border: 0.1px solid #ccc;
+        background-color: transparent;
+
+        &:focus {
+          border-color: cornflowerblue;
+        }
+        &::placeholder {
+          color: #999;
+        }
+      }
+    }
+  }
+
+  .submitButton {
+    width: 100%;
+    padding: 1rem;
+    font-size: 15px;
+    margin: 10px auto 0;
+
+    &:hover {
+      background-color: cornflowerblue;
+    }
+  }
+
+  .authRedirect {
+    font-size: 12.5px;
+    margin: 10px auto;
+    color: #404040;
+    cursor: pointer;
+
+    &:hover {
+      color: cornflowerblue;
+      text-decoration: underline;
+    }
+  }
+}
+
+.loginContainer {
+  margin: auto;
+  padding: 10px 0;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .loginForm {
+    gap: 20px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 600px) {
+      padding: 10px;
+    }
+
+    .formGroup {
+      width: 100%;
+      font-size: 15px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      border: 0.1px solid ghostwhite;
+
+      label {
+        padding: 10px 0;
+        min-width: 100px;
+
+        span { color: red;}
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        outline: none;
+        color: black;
+        border-radius: 5px;
+        border: 0.1px solid #ccc;
+        background-color: transparent;
+
+        &:focus {
+          border-color: cornflowerblue;
+        }
+        &::placeholder {
+          color: #999;
+        }
+      }
+    }
+  }
+
+  .passwordWrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .passwordWrapper input {
+    width: 100%;
+    padding-right: 40px;
+  }
+
+  .passwordToggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: dimgray;
+    font-size: 18px;
+  }
+
+  .manageSetPassword {
+    width: 100%;
+    font-size: 12px;
+    display: flex;
+    color: dimgray;
+    justify-content: space-between;
+    
+    .rememberMe {
+      display: flex;
+      gap: 10px;
+      flex-direction: row;
+      align-items: center;
+
+      span { 
+        gap: 5px;
+        display: flex;
+        min-width: 111px;
+        align-items: center ;
+      }
+
+      input { height: 10px;}
+    }
+
+    .forgotPassword {
+      text-decoration: none;
+      padding: 10px;
+
+      &:hover {
+        color: #007bff;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .authRedirect {
+    font-size: 12.5px;
+    margin: 10px auto;
+    color: #404040;
+    cursor: pointer;
+
+    &:hover {
+      color: cornflowerblue;
+      text-decoration: underline;
+    }
+  }
+
+  .submitButton {
+    width: 100%;
+    padding: 1rem;
+    font-size: 15px;
+    margin: 10px auto 0;
+
+    &:hover {
+      background-color: cornflowerblue;
+    }
+  }
+}
+
+.authFooter {
+  text-align: center;
+  margin-top: 20px;
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.authError {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.authSuccess {
+  color: green;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.multiLoginOption {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  margin: 20px auto;
+  padding: 10px 5px;
+  gap: 25px;
+}
+
+.multiLoginOption span {
+  gap: 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.multiLoginOption hr {
+  display: block;
+  width: 150px;
+  margin: 0 10px;
+  border: none;
+  border-top: 1px solid #ccc;
+
+  @media screen and (max-width: 600px) {
+    width: 75px;
+  }
+}
+
+.multiLoginOption button {
+  max-width: 360px;
+  margin: auto;
+  width: 100%;
+}

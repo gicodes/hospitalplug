@@ -8,13 +8,7 @@ const features = [
     bgImage: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9zcGl0YWxzfGVufDB8fDB8fHww",
     title: "Explore",
     link: "/discover/hospitals",
-    description: "Find top and trusted healthcare services with ease",
-  },
-  {
-    bgImage: "https://images.unsplash.com/photo-1580281657702-257584239a55?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA==",
-    title: "Bookings",
-    link: "/explore/bookings",
-    description: "Schedule appointments seamlessly with top facilities",
+    description: "Find top and trusted  healthcare services with ease",
   },
   {
     bgImage: "https://images.unsplash.com/photo-1635247187021-ad5ab658bc5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZW1lcmdlbmN5fGVufDB8fDB8fHww",
@@ -27,6 +21,12 @@ const features = [
     title: "Register a hospital",
     link: "/staff/register",
     description: "Get your hospital listed on Hospital Plug",
+  },
+  {
+    bgImage: "https://images.unsplash.com/photo-1580281657702-257584239a55?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA==",
+    title: "Bookings",
+    link: "/explore/bookings",
+    description: "Schedule appointments seamlessly with top facilities",
   },
 ];
 

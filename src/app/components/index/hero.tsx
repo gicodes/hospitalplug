@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import styles from "../../page.module.css";
-import { BsFillPlugFill, BsFillExclamationTriangleFill } from "react-icons/bs";
+import { BsFillPlugFill } from "react-icons/bs";
+import { SiWorldhealthorganization } from "react-icons/si";
 import {
   countries,
   statesInNigeria,
@@ -31,10 +32,10 @@ const Hero = () => {
     <div className={styles.hero}>
       <div id='hero-text'>
         <div className="text-center">
-          <h2>Choose Health First{" "} 
-            <BsFillExclamationTriangleFill size={30} color="crimson"/>
+          <h2>
+            Let's connect y<SiWorldhealthorganization size={25}/>u
           </h2>
-          <h2>Get connected with Ease <BsFillPlugFill /> </h2>
+          <h2>to  healthcare services <BsFillPlugFill /> </h2>
           <h4>Find Top Hospitals・Book Service・Reserve Care・Follow up</h4>
         </div>
       </div>
