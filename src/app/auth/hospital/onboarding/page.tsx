@@ -8,7 +8,7 @@ import Step3 from '@/app/components/auth/hospital/operations';
 import Step456 from '@/app/components/auth/hospital/submit';
 
 export default function HospitalOnboarding() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [form, setForm] = useState({});
 
   const next = () => setStep(prev => prev + 1);
