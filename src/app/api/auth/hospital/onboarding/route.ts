@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import db from '@/lib/db';
+import Hospital from '@/lib/model';
 import admin from '@/lib/firebase-admin';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const decoded = await admin.auth().verifyIdToken(token);
     const firebaseUid = decoded.uid;
 
-    const hospital = await db.hospital.findOne({ where: { firebaseUid } });
+    const hospital = await Hospital.findOne({ where: { firebaseUid } });
     if (!hospital) return res.status(404).json({ message: 'Hospital not found' });
 
     const { onboardingStep, ...updateData } = req.body;
