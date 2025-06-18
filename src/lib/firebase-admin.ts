@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import serviceAccountJson from './hospitalplug-922b1-firebase-adminsdk-fbsvc-08ec03b6ad.json';
+import serviceAccountJson from '../../../server/lib/hospitalplug-922b1-firebase-adminsdk-fbsvc-08ec03b6ad.json';
 
 import { ServiceAccount } from 'firebase-admin';
 
