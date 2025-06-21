@@ -1,47 +1,55 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, getIdTokenResult, User } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 type Role = 'admin' | 'hospital' | 'user' | null;
 
 interface AuthContextType {
-  user: User | null;
+  user: any;
   role: Role;
   loading: boolean;
+  isAuthenticated: boolean;
 }
 
-const AuthContext = createContext<AuthContextType>({ user: null, role: null, loading: true });
+const AuthContext = createContext<AuthContextType>({
+  user: null,
+  role: null,
+  loading: true,
+  isAuthenticated: false,
+});
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const { data: session, status } = useSession();
   const [role, setRole] = useState<Role>(null);
-  const [loading, setLoading] = useState(true);
+  const loading = status === 'loading';
+  const pathname = usePathname();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      setUser(firebaseUser);
+    if (status === 'authenticated') {
+      const email = session?.user?.email;
 
-      if (firebaseUser) {
-        const tokenResult = await getIdTokenResult(firebaseUser, true);
-        const role = tokenResult.claims.role as Role;
-        setRole(role || 'user'); // Default to 'user' if no role is set
+      if (email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+        setRole('admin');
+      } else if (pathname?.startsWith('/onboarding') || pathname?.startsWith('/dashboard/hospital')) {
+        setRole('hospital');
       } else {
-        setRole(null);
+        setRole('user');
       }
+    } else {
+      setRole(null);
+    }
+  }, [session, status, pathname]);
 
-      setLoading(false);
-    });
+  const value: AuthContextType = {
+    user: session?.user || null,
+    role,
+    loading,
+    isAuthenticated: status === 'authenticated',
+  };
 
-    return () => unsubscribe();
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ user, role, loading }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);

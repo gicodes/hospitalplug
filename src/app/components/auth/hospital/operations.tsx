@@ -76,14 +76,14 @@ export default function Step3({ onBack, onNext, setForm }: StepProps) {
       <input
         type="text"
         className={styles.input}
-        placeholder="Specialisation... i.e General, Pediatrics, Psychiatry, Surgery, Obstetrics, etc."
+        placeholder="Specialisation:  General, Pediatrics, Psychiatry, Surgery, Obstetrics, etc."
         value={local.serviceSpecialties.join(', ')}
         onChange={e => setLocal({ ...local, serviceSpecialties: e.target.value.split(',').map(s => s.trim()) })}
       />
 
       <input 
         className={styles.input}
-        placeholder="Opening Hours...  i.e. 8:00 AM, Mon - Fri" 
+        placeholder="Opening Hours:  8am * Mon - Fri" 
         value={local.openingHours} 
         onChange={e => setLocal({ ...local, openingHours: e.target.value })} 
       />
@@ -139,6 +139,7 @@ export default function Step3({ onBack, onNext, setForm }: StepProps) {
             {mode === "mobileMoney" && "Mobile Transfer"}
             <input
               type="checkbox"
+              className="tickbox"
               checked={local.modeOfPayment.includes(mode)}
               onChange={e => {
               const updated = e.target.checked

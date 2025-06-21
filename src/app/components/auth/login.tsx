@@ -1,8 +1,10 @@
 'use client';
 
+import axios from 'axios';
 import React, { useState } from 'react';
-import styles from '../../auth/page.module.css';
 import { FcGoogle } from 'react-icons/fc';
+import { useRouter } from 'next/navigation';
+import styles from '../../auth/page.module.css';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 
 interface LoginProps {
@@ -11,12 +13,14 @@ interface LoginProps {
   buttonLabel?: string;
 }
 
+import { signIn } from 'next-auth/react';
+
 export const AltAuth = () => (
   <div className={styles.multiLoginOption}>
     <span>
       <hr/> Or sign in with <hr/>
     </span>
-    <button className="btn-secondary">
+    <button onClick={() => signIn('google')} className="btn-secondary" >
       <span><FcGoogle fill='inherit' /> Google</span>
     </button>
   </div>
@@ -27,14 +31,43 @@ const Login: React.FC<LoginProps> = ({
   profile,
   buttonLabel = "Sign In",
 }) => {
+  const [error, setError] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleLogin = async () => {
+    try {
+      if (profile === 'user') {
+        await signIn('google');
+        return;
+      }
+
+      const endpoint = profile === 'admin'
+        ? '/api/auth/admin'
+        : '/api/auth/hospital';
+
+      const res = await axios.post(endpoint, { email, password });
+
+      localStorage.setItem('token', res.data.token);
+
+      router.push(`/dashboard/${profile}`);
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Login failed');
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit?.({ email, password });
+
+    if (onSubmit) {
+      onSubmit({ email, password });
+    } else {
+      await handleLogin();
+    }
   };
 
   return (
@@ -99,9 +132,13 @@ const Login: React.FC<LoginProps> = ({
 
         { profile=="user" && <AltAuth />}
 
-        <a href={`/auth/${profile}/register`} className={styles.authRedirect}>
-          <p> Don&#39;t have an account? Sign up </p>
-        </a>
+        {profile !== 'admin' && (
+          <a href={`/auth/${profile}/register`} className={styles.authRedirect}>
+            <p> Don&#39;t have an account? Sign up </p>
+          </a>
+        )}
+
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </form>
     </div>
   );

@@ -65,8 +65,8 @@
     border: 2px solid #ccc;
     border-radius: 8px;
     background: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     outline: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     transition: border-color 0.2s;
   }
 
@@ -77,10 +77,9 @@
   button {
     width: 234px;
   }
-}
+}  
+.minHeight { min-height: 50vh;}
 
-  
-  .minHeight { min-height: 50vh;}
 .steps {
   margin: 25px auto;
   padding: 25px;
@@ -123,20 +122,33 @@
     color: #404040;
     border: none;
     background-color: #ccc;
+    outline: none;
+    box-shadow: none;
   }
 
   input:focus, input:not(:placeholder-shown) {
     color: black;
-    border: none;
-    background-color: #ccc;
+    border: 0.1px solid #ccc;
   }
 
   .select {
+    outline: none;
+    color: white;
     height: max-content;
     padding: 10px;
+    min-height: 36px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    background-color: dimgray;
+    background-color: #909090;
+    /* Chevron/dropdown arrow for select */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 8L15 1' stroke='white' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 10px;
+    padding-right: 10px;
 
     option {
       padding: 10px;

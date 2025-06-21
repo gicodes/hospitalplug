@@ -68,7 +68,7 @@ const localHospitals = [
 const Local = () => {
   return (
     <div className={styles.local}>
-      <h5>Hospitals & Care Centers Near You</h5>
+      <h5>Healthcare Centers Near You</h5>
       <p>Find the best  healthcare providers in your area</p>
       
       <ul className={styles.list}>

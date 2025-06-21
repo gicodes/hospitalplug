@@ -1,6 +1,5 @@
 'use client';
 
-import { auth } from '@/lib/firebase';
 import styles from './page.module.css';
 import CustomLogo from './assets/logo';
 import React, { useState } from 'react';
@@ -15,13 +14,17 @@ const menuLinks = [
   { href: '/discover', label: 'Discover' },
 ];
 
+import { useLogout } from './hooks/useLogout';
+import { signOut } from 'next-auth/react';
+
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [authMenuOpen, setAuthMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const [authMenuOpen, setAuthMenuOpen] = useState(false);
   const toggleAuthMenu = () => setAuthMenuOpen((prev) => !prev);
 
   const { user, role, } = useAuth();
+  const logout = useLogout();
 
   return (
     <div className={styles.navbar}>
@@ -51,18 +54,22 @@ const Header = () => {
       </div>
 
       <div className={styles.navlinks}>
-        {role === 'hospital' ? (
-          <button className='btn-secondary'>See Subscription</button>
-        ) : (
+        {role!== 'user' &&  
           <>
-            <button className='btn-primary'>
-              <a href='/auth/hospital/register'>Register a Hospital</a>
-            </button>
-            <button className='btn-secondary'>
-              <a href='/auth/hospital'>Hospital Sign in</a></button>
+            {role === 'hospital' ? (
+              <button className='btn-secondary'>See Subscription</button>
+            ) : (
+              <>
+                <button className='btn-primary'>
+                  <a href='/auth/hospital/register'>Register a Hospital</a>
+                </button>
+                <button className='btn-secondary'>
+                  <a href='/auth/hospital'>Hospital Sign in</a></button>
+              </>
+            )}
           </>
-        )}
-
+        }
+        
         <div onClick={toggleAuthMenu}>
           {user ? (
             <img
@@ -83,9 +90,9 @@ const Header = () => {
                 <p>{user.email}</p>
                 {role === 'hospital' && <a href="/hospital/dashboard">Dashboard</a>}
                 {role === 'user' && <a href="/profile">Profile</a>}
-                <button onClick={() => auth.signOut()}>Sign out</button>
+                <button onClick={() => logout}>Sign out</button>
               </>
-            ) : (
+              ) : (
               <>
                 <a href="/auth/user">User Sign in</a>
                 <a href="/auth/user/register">User Sign up</a>
