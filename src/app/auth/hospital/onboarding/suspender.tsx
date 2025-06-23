@@ -5,9 +5,9 @@ import styles from './page.module.css';
 import { useSearchParams } from 'next/navigation';
 
 import Step1 from '@/app/components/auth/hospital/authOTP';
-import Step456 from '@/app/components/auth/hospital/submit';
 import Step2 from '@/app/components/auth/hospital/basicInfo';
 import Step3 from '@/app/components/auth/hospital/operations';
+import Step456End from '@/app/components/auth/hospital/submit';
 
 export default function HospitalOnboarding() {
   const [step, setStep] = useState(1);
@@ -42,7 +42,7 @@ export default function HospitalOnboarding() {
         {step === 0 && (<Step1 userEmail={email ?? undefined} onNext={next} form={form} setForm={setForm} />)}
         {step === 1 && (<Step2 userEmail={email ?? undefined} onNext={next} form={form} setForm={setForm} />)}
         {step === 2 && (<Step3 userEmail={email ?? undefined} onBack={back} onNext={next} form={form} setForm={setForm} />)}
-        {step === 3 && (<Step456 userEmail={email ?? undefined} onBack={back} onNext={next} form={form} setForm={setForm} />)}
+        {step === 3 && (<Step456End userEmail={email ?? undefined} onBack={back} onNext={next} form={form} setForm={setForm} />)}
       </>
     </div>
   );
