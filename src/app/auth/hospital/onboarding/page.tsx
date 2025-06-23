@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import HospitalOnboardingClient from '../../../components/auth/hospital/suspender';
+import HospitalOnboardingClient from './suspender';
 
 export default function HospitalOnboardingPage() {
   return (
