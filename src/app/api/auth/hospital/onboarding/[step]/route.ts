@@ -32,7 +32,7 @@ interface OnboardingData {
 
 export async function POST(req: NextRequest) {
   try {
-    const stepParam = req.nextUrl.pathname.split('/').pop(); // Extract the dynamic [step]
+    const stepParam = req.nextUrl.pathname.split('/').pop();
     const step = Number(stepParam);
 
     if (!step || isNaN(step)) {
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
         await hospital.update({ operations: data.operations });
         break;
       case 4:
-        await hospital.update({ type: data.docs }); // Assuming `type` is meant to be `docs`
+        await hospital.update({ type: data.docs });
         break;
       case 5:
         await hospital.update({ business: data.business });

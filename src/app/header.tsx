@@ -76,6 +76,9 @@ const Header = () => {
               src={user?.image || '/default-avatar.png'}
               alt="User"
               className={styles.signedInUserIcon}
+              width={40}
+              height={40}
+              objectFit='cover'
             />
           ) : (
             <FaUserCircle size={24}  className={styles.userIcon}/>

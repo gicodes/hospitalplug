@@ -76,7 +76,15 @@ const Local = () => {
         {localHospitals.map((hospital, idx) => (
           <li key={hospital.id || idx}>
             <div className={styles.card}>
-              <Image src={hospital.image} alt={hospital.name} className={styles.hospitalImage} />
+              <Image 
+                src={hospital.image} 
+                alt={hospital.name} 
+                className={styles.hospitalImage} 
+                width={250}
+                height={250}
+                objectFit='cover'
+                priority
+              />
               
               <div className={styles.hospitalInfo}>
                 <span className={styles.hospitalIndex}>{hospital.type}</span> 
