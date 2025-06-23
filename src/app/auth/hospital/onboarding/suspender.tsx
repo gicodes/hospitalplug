@@ -10,7 +10,7 @@ import Step2 from '@/app/components/auth/hospital/basicInfo';
 import Step3 from '@/app/components/auth/hospital/operations';
 
 export default function HospitalOnboarding() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
   const [form, setForm] = useState({});
 
   const searchParams = useSearchParams();
