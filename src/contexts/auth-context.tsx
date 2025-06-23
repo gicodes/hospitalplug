@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 type Role = 'admin' | 'hospital' | 'user' | null;
 
 interface AuthContextType {
-  user: any;
+  user: import('next-auth').User | null;
   role: Role;
   loading: boolean;
   isAuthenticated: boolean;

@@ -28,7 +28,7 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user }) {
+    async signIn() { // {user}
       // Here you can add database checks or whitelist logic if needed
       // Example: Only allow users with emails in a whitelist
       // const allowedEmails = ['user1@example.com', 'user2@example.com'];

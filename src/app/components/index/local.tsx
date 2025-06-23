@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from "../../page.module.css";
 import { IoIosStar } from "react-icons/io";
 
@@ -75,7 +76,7 @@ const Local = () => {
         {localHospitals.map((hospital, idx) => (
           <li key={hospital.id || idx}>
             <div className={styles.card}>
-              <img src={hospital.image} alt={hospital.name} className={styles.hospitalImage} />
+              <Image src={hospital.image} alt={hospital.name} className={styles.hospitalImage} />
               
               <div className={styles.hospitalInfo}>
                 <span className={styles.hospitalIndex}>{hospital.type}</span> 

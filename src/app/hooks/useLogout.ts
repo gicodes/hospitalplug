@@ -5,9 +5,9 @@ export const useLogout = () => {
   const router = useRouter();
 
   return () => {
-    signOut({ callbackUrl: '/' });  // For user (next-auth)
+    signOut({ callbackUrl: '/' });
     
-    localStorage.removeItem('token');  // For hospital or admin (custom)
+    localStorage.removeItem('token');
     document.cookie = 'token=; Max-Age=0; path=/;';
     router.push('/');
   };

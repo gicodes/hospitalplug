@@ -59,8 +59,14 @@ const Login: React.FC<LoginProps> = ({
 
       localStorage.setItem('token', res.data.token);
       router.push(`/dashboard/${profile}`);
-    } catch (err: any) {
-      showAlert('error', err.response?.data?.message || 'Login failed');
+    } catch (err) {
+      let message = 'Login failed';
+      if (typeof err === 'object' && err !== null && 'response' in err) {
+        const errorObj = err as { response?: { data?: { message?: string } } };
+        message = errorObj.response?.data?.message || message;
+      }
+      setError(message);
+      showAlert('error', message);
     } finally {
       stopLoading();
     }

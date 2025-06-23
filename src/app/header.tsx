@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import styles from './page.module.css';
 import CustomLogo from './assets/logo';
 import React, { useState } from 'react';
@@ -15,7 +16,6 @@ const menuLinks = [
 ];
 
 import { useLogout } from './hooks/useLogout';
-import { signOut } from 'next-auth/react';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -72,8 +72,8 @@ const Header = () => {
         
         <div onClick={toggleAuthMenu}>
           {user ? (
-            <img
-              src={user.photoURL || '/default-avatar.png'}
+            <Image
+              src={user?.image || '/default-avatar.png'}
               alt="User"
               className={styles.signedInUserIcon}
             />
@@ -86,7 +86,7 @@ const Header = () => {
           <div className={styles.authDropdown}>
             {user ? (
               <>
-                <p><strong>{user.displayName || 'Untitled User'}</strong></p>
+                <p><strong>{user?.name || 'Untitled User'}</strong></p>
                 <p>{user.email}</p>
                 {role === 'hospital' && <a href="/hospital/dashboard">Dashboard</a>}
                 {role === 'user' && <a href="/profile">Profile</a>}
