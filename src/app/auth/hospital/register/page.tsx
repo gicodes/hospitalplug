@@ -3,11 +3,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styles from '../../../auth/page.module.css';
+import { useRouter } from 'next/navigation';
 
 const HospitalRegister = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ const HospitalRegister = () => {
       await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/hospital/register/request-code`, {
         email: email,
       });
+      router.push(`/auth/hospital/onboarding?email=${encodeURIComponent(email)}`);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.message || 'Verification failed');
@@ -37,6 +40,7 @@ const HospitalRegister = () => {
         <h1>Hospital Registration</h1>
         <p> healthcare institution? Register an account now</p>
       </div>
+
       <div className={styles.registerContainer}>
         <form onSubmit={handleSubmit} className={styles.registerForm}>
           <div className={styles.formGroup}>

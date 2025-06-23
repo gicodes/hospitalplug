@@ -1,10 +1,13 @@
 'use client';
 
 import axios from 'axios';
+import { signIn } from 'next-auth/react';
 import React, { useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
 import { useRouter } from 'next/navigation';
 import styles from '../../auth/page.module.css';
+import { useAlert } from '@/contexts/alert-context';
+import { useLoading } from '@/contexts/loading-context';
+import { FcGoogle } from 'react-icons/fc';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 
 interface LoginProps {
@@ -13,15 +16,13 @@ interface LoginProps {
   buttonLabel?: string;
 }
 
-import { signIn } from 'next-auth/react';
-
 export const AltAuth = () => (
   <div className={styles.multiLoginOption}>
     <span>
       <hr/> Or sign in with <hr/>
     </span>
     <button onClick={() => signIn('google')} className="btn-secondary" >
-      <span><FcGoogle fill='inherit' /> Google</span>
+      <span> <FcGoogle fill='inherit' /> Google </span>
     </button>
   </div>
 )
@@ -38,9 +39,13 @@ const Login: React.FC<LoginProps> = ({
   const [showPassword, setShowPassword] = useState(false);
   
   const router = useRouter();
+  const { showAlert } = useAlert();
+  const { startLoading, stopLoading } = useLoading();
 
   const handleLogin = async () => {
     try {
+      startLoading();
+
       if (profile === 'user') {
         await signIn('google');
         return;
@@ -53,10 +58,11 @@ const Login: React.FC<LoginProps> = ({
       const res = await axios.post(endpoint, { email, password });
 
       localStorage.setItem('token', res.data.token);
-
       router.push(`/dashboard/${profile}`);
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed');
+      showAlert('error', err.response?.data?.message || 'Login failed');
+    } finally {
+      stopLoading();
     }
   };
 
@@ -65,9 +71,8 @@ const Login: React.FC<LoginProps> = ({
 
     if (onSubmit) {
       onSubmit({ email, password });
-    } else {
-      await handleLogin();
-    }
+    } else await handleLogin();
+
   };
 
   return (
@@ -130,14 +135,13 @@ const Login: React.FC<LoginProps> = ({
           {buttonLabel}
         </button>
 
-        { profile=="user" && <AltAuth />}
+        {profile=="user" && <AltAuth />}
 
         {profile !== 'admin' && (
           <a href={`/auth/${profile}/register`} className={styles.authRedirect}>
             <p> Don&#39;t have an account? Sign up </p>
           </a>
         )}
-
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </form>
     </div>

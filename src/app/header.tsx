@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { FaUserCircle } from "react-icons/fa";
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useAuth } from '@/app/components/context/auth-context';
+import { useAuth } from '@/contexts/auth-context';
 
 const menuLinks = [
   { href: '/', label: 'Home' },

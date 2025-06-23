@@ -30,10 +30,10 @@ export async function POST(req: NextRequest, { params }: { params: { step: strin
         await hospital.update({ contact: data.contact, address: data.address });
         break;
       case 3:
-        await hospital.update({ type: data.type });
+        await hospital.update({ operations: data.operations });
         break;
       case 4:
-        await hospital.update({ operations: data.operations });
+        await hospital.update({ type: data.type }); // upload required documents
         break;
       case 5:
         await hospital.update({ business: data.business });

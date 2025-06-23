@@ -7,7 +7,7 @@ const AdminLogin = () => {
     <div className={styles.page}>
       <div className={styles.authHeader}>
         <h1>Welcome, Admin</h1>
-        <p>Administrators are allowed to login and manage Organizations and Users</p>
+        <p>Administrators & Mods can sign in and manage Organizations and Users</p>
       </div>
       
       <Login profile='Admin@hospitalplug.com' />

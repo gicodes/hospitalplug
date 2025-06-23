@@ -5,6 +5,8 @@ import Footer from "./footer";
 import type { Metadata } from "next";
 import styles from './page.module.css';
 import { Geist, Geist_Mono } from "next/font/google";
+import { AlertProvider } from "../contexts/alert-context";
+import { LoadingProvider } from "../contexts/loading-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,13 +31,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <header className={styles.header}>
-          <Header/>
-        </header>
-        {children}
-        <footer className={styles.footer}>
-          <Footer />
-        </footer>
+        <AlertProvider>
+          <LoadingProvider>
+            <header className={styles.header}>
+              <Header/>
+            </header>
+            {children}
+            <footer className={styles.footer}>
+              <Footer />
+            </footer>
+          </LoadingProvider>
+        </AlertProvider>
       </body>
     </html>
   );
