@@ -18,8 +18,6 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
     remark: '',
   });
 
-  // const [isLoading, setLoading] = useState(false);
-  // const [isVetting, setVetting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const [isVetted, setIsVetted] = useState(false);
@@ -79,9 +77,10 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
         
         <div className={styles.uploadDocs}>
           <label>
-            <IoDocumentAttach color="#1877F2" size={24} style={{ marginRight: 8 }} />
+            <IoDocumentAttach color="#30b35a" size={24} style={{ marginRight: 8 }} />
             <span>Upload Documents</span>
             <input
+              required
               type="file"
               multiple
               accept=".pdf,.jpg,.png"
@@ -185,6 +184,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
         <div className={styles.password}>
           <div className={styles.passwordWrapper}>
             <input
+              required
               className={styles.input}
               type={showPassword ? "text" : "password"}
               placeholder="Password"
@@ -203,6 +203,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
          
           <div className={styles.passwordWrapper}>
             <input
+              required
               className={styles.input}
               type={showPassword ? "text" : "password"}
               placeholder="Confirm Password"

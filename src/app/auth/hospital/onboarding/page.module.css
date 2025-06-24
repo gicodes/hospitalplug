@@ -453,11 +453,11 @@
 }
 
 .stepDot.active span {
-  background-color: #0070f3;
+  background-color: #30b35a;
   color: white;
 }
 
 .stepDot.completed span {
-  background-color: #30b35a;
+  background-color: #0070f3;
   color: white;
 }

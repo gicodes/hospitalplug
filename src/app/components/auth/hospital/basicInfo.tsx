@@ -57,6 +57,7 @@ export default function Step1({ onNext, setForm }: StepProps) {
       <h4>Basic Info</h4>
 
       <input
+        required
         placeholder="Hospital Name"
         value={local.name}
         onChange={e => setLocal({ ...local, name: e.target.value })}
@@ -64,6 +65,7 @@ export default function Step1({ onNext, setForm }: StepProps) {
 
       <div className={styles.inputGroup}>
         <input
+          required
           placeholder="Phone"
           value={local.contact.phone}
           onChange={e => setLocal({ ...local, contact: { ...local.contact, phone: e.target.value } })}
@@ -77,6 +79,7 @@ export default function Step1({ onNext, setForm }: StepProps) {
 
       <div className={styles.inputGroup}>
         <input
+          required
           placeholder="Email"
           value={local.contact.email}
           onChange={e => setLocal({ ...local, contact: { ...local.contact, email: e.target.value } })}
@@ -91,6 +94,7 @@ export default function Step1({ onNext, setForm }: StepProps) {
       <span className={styles.subtitle}>Set your location</span>
       <div className={styles.inputGroup}>
         <select
+          required
           className={styles.select}
           value={local.address.country}
           onChange={e => setLocal({ ...local, address: { ...local.address, country: e.target.value, state: '', city: '' } })}
@@ -127,6 +131,7 @@ export default function Step1({ onNext, setForm }: StepProps) {
       </div>
 
       <input
+        required
         className={styles.input}
         placeholder="Street Address"
         value={local.address.street}
@@ -139,6 +144,7 @@ export default function Step1({ onNext, setForm }: StepProps) {
           <label key={t.name} className={"radioTag"}>
             <span style={{ marginRight: 4 }}>{t.name}</span>
             <input
+              required
               type="checkbox"
               checked={local.type.includes(t.name)}
               onChange={e => {
@@ -156,7 +162,7 @@ export default function Step1({ onNext, setForm }: StepProps) {
       </div>
       <br/>
 
-      <button className="btn-primary mx-auto full-width max-width-360" onClick={handleSubmit}>Next</button>
+      <button className="btn-success mx-auto full-width max-width-360" onClick={handleSubmit}>Next</button>
     </div>
   );
 }

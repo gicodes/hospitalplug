@@ -155,7 +155,7 @@ export default function Step3({ onBack, onNext, setForm }: StepProps) {
 
       <div className="btn-group">
         <button className="btn-secondary" onClick={handleBack}>Back</button>
-        <button className="btn-primary" onClick={handleSubmit}>Next</button>
+        <button className="btn-success" onClick={handleSubmit}>Next</button>
       </div>
       
     </div>

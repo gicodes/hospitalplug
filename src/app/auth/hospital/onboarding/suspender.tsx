@@ -16,7 +16,7 @@ export default function HospitalOnboarding() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
 
-  const next = () => setStep(prev => prev + 1);
+  const next = () => setStep(prev => prev + 1); 
   const back = () => setStep(prev => prev - 1);
 
   const steps = ['Verify Email', 'Basic Info', 'Operations', 'Finish Setup',];
@@ -30,7 +30,7 @@ export default function HospitalOnboarding() {
         {steps.map((label, index) => (
           <div
             key={index}
-            className={`${styles.stepDot} ${step === index ? styles.active : ''} ${step > index ? styles.completed : ''}`}
+            className={`${styles.stepDot} ${step === (index + 1) ? styles.active : ''} ${step > (index + 1) ? styles.completed : ''}`}
           >
             <span>{index + 1}</span>
             <p>{label}</p>
