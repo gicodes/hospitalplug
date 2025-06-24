@@ -39,10 +39,10 @@ export default function HospitalOnboarding() {
       </div>
       
       <>
-        {step === 0 && (<Step1 userEmail={email ?? undefined} onNext={next} form={form} setForm={setForm} />)}
-        {step === 1 && (<Step2 userEmail={email ?? undefined} onNext={next} form={form} setForm={setForm} />)}
-        {step === 2 && (<Step3 userEmail={email ?? undefined} onBack={back} onNext={next} form={form} setForm={setForm} />)}
-        {step === 3 && (<Step456End userEmail={email ?? undefined} onBack={back} onNext={next} form={form} setForm={setForm} />)}
+        {step === 1 && (<Step1 userEmail={email ?? undefined} onNext={next} form={form} setForm={setForm} />)}
+        {step === 2 && (<Step2 userEmail={email ?? undefined} onNext={next} form={form} setForm={setForm} />)}
+        {step === 3 && (<Step3 userEmail={email ?? undefined} onBack={back} onNext={next} form={form} setForm={setForm} />)}
+        {step === 4 && (<Step456End userEmail={email ?? undefined} onBack={back} onNext={next} form={form} setForm={setForm} />)}
       </>
     </div>
   );

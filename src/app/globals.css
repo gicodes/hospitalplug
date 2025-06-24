@@ -245,8 +245,13 @@ h6 {
 }
 
 .radioTag input, .tickbox {
-  width: 12px;
-  height: 12px;
+  width: 0.8rem;
+  height: 0.8rem;
+
+  @media screen and (max-width: 768px) {
+    width: 0.66rem;
+    height: 0.66rem;
+  }
 }
 
 .alert {

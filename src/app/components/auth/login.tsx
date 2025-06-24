@@ -1,8 +1,8 @@
 'use client';
 
 import axios from 'axios';
-import { signIn } from 'next-auth/react';
 import React, { useState } from 'react';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import styles from '../../auth/page.module.css';
 import { useAlert } from '@/contexts/alert-context';
@@ -32,7 +32,6 @@ const Login: React.FC<LoginProps> = ({
   profile,
   buttonLabel = "Sign In",
 }) => {
-  const [error, setError] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -46,26 +45,33 @@ const Login: React.FC<LoginProps> = ({
     try {
       startLoading();
 
-      if (profile === 'user') {
-        await signIn('google');
-        return;
+      let endpoint;
+      switch (profile) {
+        case "admin":
+          endpoint = '/auth/admin';
+          break;
+        case "hospital":
+          endpoint = '/auth/hospital';
+          break;
+        case "user":
+        default:
+          endpoint = '/auth/user';
+          break;
       }
-
-      const endpoint = profile === 'admin'
-        ? '/api/auth/admin'
-        : '/api/auth/hospital';
-
       const res = await axios.post(endpoint, { email, password });
 
       localStorage.setItem('token', res.data.token);
+
+      showAlert('success', "Sign in Successful. Welcome Back!")
       router.push(`/dashboard/${profile}`);
     } catch (err) {
       let message = 'Login failed';
-      if (typeof err === 'object' && err !== null && 'response' in err) {
-        const errorObj = err as { response?: { data?: { message?: string } } };
-        message = errorObj.response?.data?.message || message;
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = err.response.data?.message || err.response.statusText || message;
+      } else if (err instanceof Error) {
+        message = err.message;
       }
-      setError(message);
       showAlert('error', message);
     } finally {
       stopLoading();
@@ -78,7 +84,6 @@ const Login: React.FC<LoginProps> = ({
     if (onSubmit) {
       onSubmit({ email, password });
     } else await handleLogin();
-
   };
 
   return (
@@ -98,7 +103,6 @@ const Login: React.FC<LoginProps> = ({
 
         <div className={styles.formGroup}>
           <label htmlFor="password">Password <span>*</span></label>
-          
           <div className={styles.passwordWrapper}>
             <input
               id="password"
@@ -148,7 +152,6 @@ const Login: React.FC<LoginProps> = ({
             <p> Don&#39;t have an account? Sign up </p>
           </a>
         )}
-        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       </form>
     </div>
   );

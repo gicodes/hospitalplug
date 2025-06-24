@@ -18,7 +18,7 @@ const menuLinks = [
 import { useLogout } from './hooks/useLogout';
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [ menuOpen, setMenuOpen ] = useState(false);
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const [authMenuOpen, setAuthMenuOpen] = useState(false);
   const toggleAuthMenu = () => setAuthMenuOpen((prev) => !prev);
@@ -43,7 +43,7 @@ const Header = () => {
         )}
       </div>
 
-      <a href="#"><CustomLogo /></a>
+      <a href="#"> <CustomLogo /> </a>
 
       <div className={styles.navlinks}>
         {menuLinks.map((link) => (
@@ -56,7 +56,7 @@ const Header = () => {
       <div className={styles.navlinks}>
         {role!== 'user' &&  
           <>
-            {role === 'hospital' ? (
+            { role === 'hospital' ? (
               <button className='btn-secondary'>See Subscription</button>
             ) : (
               <>

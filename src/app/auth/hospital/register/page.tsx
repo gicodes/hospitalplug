@@ -2,24 +2,28 @@
 
 import axios from 'axios';
 import React, { useState } from 'react';
-import styles from '../../../auth/page.module.css';
 import { useRouter } from 'next/navigation';
+import styles from '../../../auth/page.module.css';
+import { useAlert } from '@/contexts/alert-context';
+import { useLoading } from '@/contexts/loading-context';
 
 const HospitalRegister = () => {
   const router = useRouter();
+  const { showAlert } = useAlert();
+  const { startLoading, stopLoading } = useLoading();
+  
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('Something went wrong');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if(!error && !loading) console.log("no errors")
-
     try {
-      setLoading(true);
+      startLoading();
       await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/hospital/register/request-code`, {
         email: email,
       });
+
+      showAlert('success', `OTP sent to ${email}`)
       router.push(`/auth/hospital/onboarding?email=${encodeURIComponent(email)}`);
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -27,11 +31,10 @@ const HospitalRegister = () => {
       } else {
         setError('Verification failed');
       }
+      showAlert('error', error);
     } finally {
-      setLoading(false);
+      stopLoading();
     }
-
-    console.log('Hospital registration credentials:', { email });
   };
 
   return (

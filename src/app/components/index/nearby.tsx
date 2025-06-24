@@ -3,7 +3,8 @@ import Image from 'next/image';
 import styles from "../../page.module.css";
 import { IoIosStar } from "react-icons/io";
 
-const localHospitals = [
+// nearby will eventually fetch from server: hospitals/nearby
+const nearby = [
   { 
     id: 1, 
     name: "Phoenix Medicals",
@@ -73,7 +74,7 @@ const Local = () => {
       <p>Find the best  healthcare providers in your area</p>
       
       <ul className={styles.list}>
-        {localHospitals.map((hospital, idx) => (
+        {nearby.map((hospital, idx) => (
           <li key={hospital.id || idx}>
             <div className={styles.card}>
               <Image 
@@ -81,7 +82,7 @@ const Local = () => {
                 alt={hospital.name} 
                 className={styles.hospitalImage} 
                 width={250}
-                height={250}
+                height={150}
                 objectFit='cover'
                 priority
               />

@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 import Hero from "./components/index/hero";
 import Features from "./components/index/features";
 import AboutUs from "./components/index/about";
-import Local from "./components/index/local";
+import Local from "./components/index/nearby";
 import HowItWorks from "./components/index/operations";
 import { FooterGrid } from "./footer";
 
