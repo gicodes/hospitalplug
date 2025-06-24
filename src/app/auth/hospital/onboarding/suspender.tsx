@@ -10,7 +10,7 @@ import Step3 from '@/app/components/auth/hospital/operations';
 import Step456End from '@/app/components/auth/hospital/submit';
 
 export default function HospitalOnboarding() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [form, setForm] = useState({});
 
   const searchParams = useSearchParams();
@@ -23,8 +23,8 @@ export default function HospitalOnboarding() {
 
   return (
     <div className={styles.page}>
-      <h2>Onboard an institution</h2>
-      <p>Complete the steps below to activate your account</p>
+      <h2> Onboard an institution </h2>
+      <p> Complete the steps below to activate your account </p>
 
       <div className={styles.stepIndicator}>
         {steps.map((label, index) => (
