@@ -1,16 +1,51 @@
 'use client';
 
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from '../../../auth/page.module.css';
+import { useAlert } from '@/contexts/alert-context';
 import { AltAuth } from '@/app/components/auth/login';
+import { useLoading } from '@/contexts/loading-context';
+import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs';
 
 const UserRegister = () => {
-  const [email, setEmail] = useState('');
+  const router = useRouter();
+  const { showAlert } = useAlert();
+  const { startLoading, stopLoading } = useLoading();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('User registration credentials:', { email });
+    if (password!== confirmPass) return;
+
+    startLoading();
+    
+    try {
+      const endpoint = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/user/register`
+      const res = await axios.post(endpoint, { name, email, password });
+
+      localStorage.setItem('token', res.data.token);
+
+      showAlert('success', "Hi, Welcome to Hospital Plug!")
+      router.push(`/dashboard/user`);
+    } catch (err) {
+      let message = 'Registration failed';
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = err.response.data?.message || err.response.statusText || message;
+      } else if (err instanceof Error) {
+        message = err.message;
+      }
+      showAlert('error', message);
+    } finally {
+      stopLoading();
+    }
   };
 
   return (
@@ -39,26 +74,52 @@ const UserRegister = () => {
               type="text"
               id="fullName"
               placeholder="Nkechi Amina, Aminu"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
+
           <div className={styles.formGroup}>
             <label htmlFor="password">Password <span>*</span></label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              required
-            />
+            <div className={styles.passwordWrapper}>
+              <input
+                id="password"
+                  placeholder="Enter a password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  type={showPassword ? "text" : "password"}
+                />
+                <button
+                  type="button"
+                  className={styles.passwordToggle}
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+                </button>
+              </div>
           </div>
+
           <div className={styles.formGroup}>
             <label htmlFor="confirmPassword">Confirm Password <span>*</span></label>
-            <input
-              type="password"
-              id="confirmPassword"
-              placeholder="Re-enter your password"
-              required
-            />
+            <div className={styles.passwordWrapper}>
+              <input
+                id="confirmPassword"
+                placeholder="Re-enter password"
+                required
+                value={confirmPass}
+                onChange={e => setConfirmPass(e.target.value)}
+                type={showPassword ? "text" :"password"}
+              />
+              <button
+                type="button"
+                className={styles.passwordToggle}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+              </button>
+            </div>
           </div>
 
           <button

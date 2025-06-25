@@ -72,6 +72,28 @@
     }
   }
 
+  .passwordWrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .passwordWrapper input {
+    width: 100%;
+    padding-right: 40px;
+  }
+
+  .passwordToggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: dimgray;
+    font-size: 18px;
+  }
+
   .submitButton {
     width: 100%;
     padding: 1rem;

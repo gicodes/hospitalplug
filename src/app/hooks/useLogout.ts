@@ -1,14 +1,22 @@
+import axios from 'axios';
 import { signOut } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useAlert } from '@/contexts/alert-context';
 
 export const useLogout = () => {
-  const router = useRouter();
+  const { showAlert } = useAlert();
 
-  return () => {
-    signOut({ callbackUrl: '/' });
-    
+  return async () => {
+    try {
+      await axios.post(`/api/auth/logout`);
+    } catch (err) {
+      console.warn('Logout error:', err);
+      showAlert('error', "Failed to Logout");
+    }
+
     localStorage.removeItem('token');
     document.cookie = 'token=; Max-Age=0; path=/;';
-    router.push('/');
+    document.cookie = 'role=; Max-Age=0; path=/;';
+
+    signOut({ callbackUrl: '/' });
   };
 };

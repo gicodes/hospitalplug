@@ -45,24 +45,12 @@ const Login: React.FC<LoginProps> = ({
     try {
       startLoading();
 
-      let endpoint;
-      switch (profile) {
-        case "admin":
-          endpoint = '/auth/admin';
-          break;
-        case "hospital":
-          endpoint = '/auth/hospital';
-          break;
-        case "user":
-        default:
-          endpoint = '/auth/user';
-          break;
-      }
+      const endpoint = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/${profile}`
       const res = await axios.post(endpoint, { email, password });
 
       localStorage.setItem('token', res.data.token);
 
-      showAlert('success', "Sign in Successful. Welcome Back!")
+      showAlert('success', "Login Successful. Welcome Back!")
       router.push(`/dashboard/${profile}`);
     } catch (err) {
       let message = 'Login failed';
