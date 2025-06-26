@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { FaUserCircle } from "react-icons/fa";
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { useLogout } from './hooks/useLogout';
 import { useAuth } from '@/contexts/auth-context';
 
 const menuLinks = [
@@ -14,8 +15,6 @@ const menuLinks = [
   { href: '/explore', label: 'Explore' },
   { href: '/discover', label: 'Discover' },
 ];
-
-import { useLogout } from './hooks/useLogout';
 
 const Header = () => {
   const [ menuOpen, setMenuOpen ] = useState(false);
@@ -31,10 +30,10 @@ const Header = () => {
       <div className={styles.burger}>
         <div onClick={toggleMenu} className={styles.burgerToggle}>
           {menuOpen ? <IoMdClose size={24} /> : <GiHamburgerMenu size={24} />}
-          <span>Menu</span>
+          <span> Menu</span>
         </div>
 
-        {menuOpen && (
+        { menuOpen && (
           <div className={styles.burgerMenu}>
             {menuLinks.map((link) => (
               <a key={link.href} href={link.href}>{link.label}</a>
@@ -54,7 +53,7 @@ const Header = () => {
       </div>
 
       <div className={styles.navlinks}>
-        {role!== 'user' &&  
+        { role!== 'user' &&  
           <>
             { role === 'hospital' ? (
               <button className='btn-secondary'>See Subscription</button>
@@ -64,7 +63,8 @@ const Header = () => {
                   <a href='/auth/hospital/register'>Register a Hospital</a>
                 </button>
                 <button className='btn-secondary'>
-                  <a href='/auth/hospital'>Hospital Sign in</a></button>
+                  <a href='/auth/hospital'>Hospital Sign in</a>
+                </button>
               </>
             )}
           </>

@@ -1,7 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import styles from '../../auth/page.module.css';
@@ -41,9 +41,25 @@ const Login: React.FC<LoginProps> = ({
   const { showAlert } = useAlert();
   const { startLoading, stopLoading } = useLoading();
 
+   useEffect(() => {
+    const saved = localStorage.getItem('rememberMeData');
+    if (saved) {
+      const { email, password } = JSON.parse(saved);
+      setEmail(email);
+      setPassword(password);
+      setRememberMe(true);
+    }
+  }, []);
+
   const handleLogin = async () => {
     try {
       startLoading();
+
+      if (rememberMe) {
+        localStorage.setItem('rememberMeData', JSON.stringify({ email, password }));
+      } else {
+        localStorage.removeItem('rememberMeData');
+      }
 
       const endpoint = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/${profile}`
       const res = await axios.post(endpoint, { email, password });
@@ -122,7 +138,7 @@ const Login: React.FC<LoginProps> = ({
           </div>
 
           <div className={styles.forgotPassword}>
-            <a href="#">Forgot password?</a>
+            <a href="/auth/forgot-password">Forgot password?</a>
           </div>
         </div>
 

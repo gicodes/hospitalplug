@@ -1,24 +1,31 @@
+// middleware.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
-const PUBLIC_PATHS = ['/', '/auth', '/api', '/_next', '/favicon.ico'];
+const PUBLIC_PATHS = ['/', '/auth', '/_next', '/favicon.ico', '/api'];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  // Allow public assets and APIs
   if (PUBLIC_PATHS.some(path => pathname.startsWith(path))) {
-    return NextResponse.next();  // Skip public paths
+    return NextResponse.next();
   }
 
-  // const isDashboardRoute = pathname.startsWith('/dashboard');
-
-  // Check if user is logged in with next-auth (Google login)
+  // Get NextAuth session (user) and custom cookie-based token (hospital/admin)
   const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
-  // Custom token from localStorage or cookie for hospital/admin
   const token = req.cookies.get('token')?.value;
+  const role = req.cookies.get('role')?.value;
 
-  // USER (Google Auth)
+  // ✅ Redirection logic for '/auth' route based on session/token
+  if (pathname === '/auth') {
+    if (session) return NextResponse.redirect(new URL('/dashboard/user', req.url));
+    if (token && role === 'hospital') return NextResponse.redirect(new URL('/dashboard/hospital', req.url));
+    if (token && role === 'admin') return NextResponse.redirect(new URL('/dashboard/admin', req.url));
+    return NextResponse.next(); // Show generic /auth page
+  }
+
+  // ✅ Protect /dashboard/user - requires NextAuth session
   if (pathname.startsWith('/dashboard/user')) {
     if (!session) {
       return NextResponse.redirect(new URL('/auth/user', req.url));
@@ -26,18 +33,33 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // HOSPITAL (Custom Auth)
+  // ✅ Protect /dashboard/hospital - requires token + role = hospital
   if (pathname.startsWith('/dashboard/hospital')) {
-    if (!token) {
+    if (!token || role !== 'hospital') {
       return NextResponse.redirect(new URL('/auth/hospital', req.url));
     }
     return NextResponse.next();
   }
 
-  // ADMIN (Custom Auth)
+  // ✅ Protect /dashboard/admin - requires token + role = admin
   if (pathname.startsWith('/dashboard/admin')) {
-    if (!token) {
+    if (!token || role !== 'admin') {
       return NextResponse.redirect(new URL('/auth/admin', req.url));
+    }
+    return NextResponse.next();
+  }
+
+  // ✅ Protect onboarding/reset-password pages
+  if (pathname.startsWith('/auth/hospital/onboarding')) {
+    if (!token || role !== 'hospital') {
+      return NextResponse.redirect(new URL('/auth/hospital', req.url));
+    }
+    return NextResponse.next();
+  }
+
+  if (pathname.startsWith('/auth/reset-password')) {
+    if (!token) {
+      return NextResponse.redirect(new URL('/auth/user', req.url));
     }
     return NextResponse.next();
   }
@@ -46,5 +68,10 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: [
+    '/dashboard/:path*',
+    '/auth/hospital/onboarding',
+    '/auth/reset-password',
+    '/auth',
+  ],
 };

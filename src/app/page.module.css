@@ -1,15 +1,23 @@
 .page {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 90px auto 0;
   height: 100%;
+
+  @media screen and (max-width: 768px) {
+    margin: 150px auto 0;
+  }
 }
 
 .navbar {
   width: 100%;
   display: flex;
+  z-index: 9999;
+  position: fixed;
+  min-height: 69px;
   padding: 25px 40px;
   align-items: center;
+  background-color: white;
   justify-content: space-between;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
@@ -108,10 +116,10 @@
     color: dimgray;
   }
   .signedInUserIcon {
-    color: cornflowerblue;
+    color: #2D68C4;
   }
   .userIcon:hover {
-    color: cornflowerblue;
+    color: #2D68C4;
   }
   .signedInUserIcon:hover {
     color: dimgray;
@@ -123,7 +131,7 @@
 }
 
 .navlink:hover {
-  color: cornflowerblue;
+  color: #2D68C4;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -164,7 +172,7 @@
     justify-content: center;
 
     &:hover {
-      color: cornflowerblue;
+      color: #2D68C4;
     }
   }
 
@@ -184,11 +192,41 @@
   padding: 50px 10px 25px;
   margin: 25px auto;
   border-bottom: 0.1px solid #ccc;
+  background-image: url('./assets/background.svg');
+
+.heroText {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+  .heroText::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scaleX(-0.3);
+  }
+
+  @media screen and (min-width: 768px) {
+    .heroText::before {
+      background-position: center right;
+    }
+  }
 
   h1 {
     font-size: 48px;
     margin-bottom: 32px;
-    color: cornflowerblue;
+    color: #1a1a1a;
   }
 
   h2 {
@@ -206,7 +244,7 @@
   h4 {
     font-size: 24px;
     margin-top: 48px;
-    color:#318CE7;
+    color: #2D68C4
   }
 
   @media screen and (max-width: 768px) {
@@ -276,14 +314,30 @@
     .selectInput {
       width: 180px;
       padding: 10px;
+      padding-right: 35px; 
       color: black;
       border-radius: 5px;
       font-size: 16px;
       min-height: 40px;
       border: 1px solid #ccc;
       background-color: whitesmoke;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='navy' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 20px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: border 0.2s ease;
     }
+
+    .selectInput:focus {
+      outline: none;
+      border: 1px solid #2D68C4;
+    }
+
   }
 
   button {
@@ -403,7 +457,7 @@
     .card h6 {
       font-size: 1rem;
       font-weight: 600;
-      color: cornflowerblue;
+      color: #2D68C4;
       margin: 0.5rem 0;
     }
 
@@ -646,6 +700,32 @@
   margin: 2rem 0;
 }
 
+.notFound {
+  margin: 10rem auto;
+  padding: 0.5rem auto;
+  height: 100vh;
+  text-align: center;
+
+  .notFoundAction {
+    background-image: url('./assets/404-not-found.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    display: grid;
+    min-height: 100%;
+    margin: 0;
+    justify-content: center;
+    padding: auto;
+  }
+}
+
+.notFound h1 { 
+  font-size: 36px;
+}
+
+.notFound p { margin: 25px 0;}
+
 .footer {  
   .footerGrid {
     display: grid;
@@ -709,3 +789,4 @@
     text-underline-offset: 4px;
   }
 }
+

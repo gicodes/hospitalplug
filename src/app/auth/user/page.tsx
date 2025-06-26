@@ -6,12 +6,19 @@ const UserLogin = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.authHeader}>
-        <h1>Sign in</h1>
-        <p>Registered users can sign in to view profile</p>
+      <div className={styles.leftPane}>
+        <div className={styles.leftPaneText}>
+          <h4>User Sign in</h4>
+          <p> Wonder why you should sign in?</p>
+          <p>💠 See your history </p>
+          <p>💠 Manage your bookings</p>
+          <p>💠 Save payments and invoices </p>
+        </div>   
       </div>
-      
-      <Login profile='user' />
+
+      <div className={styles.rightPane}>
+        <Login profile='user' />
+      </div>
     </div>
   )
 }

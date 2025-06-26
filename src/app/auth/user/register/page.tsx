@@ -50,46 +50,70 @@ const UserRegister = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.authHeader}>
-        <h1>User Registration</h1>
-        <p>Fill in and submit your details to create a profile</p>
+      <div className={styles.leftPane}>  
       </div>
-      <div className={styles.registerContainer}>
-        <form onSubmit={handleSubmit} className={styles.registerForm}>
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email Address <span>*</span></label>
-            <input
-              type="email"
-              id="email"
-              placeholder={`hospital@example.com`}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="fullName">Full Name <span>*</span></label>
-            <input
-              type="text"
-              id="fullName"
-              placeholder="Nkechi Amina, Aminu"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="password">Password <span>*</span></label>
-            <div className={styles.passwordWrapper}>
+      <div className={styles.userAuthPane}>
+        <div className={styles.authHeader}>
+          <h1>User Sign up</h1>
+        </div>
+        <div className={styles.registerContainer}>
+          <form onSubmit={handleSubmit} className={styles.registerForm}>
+            <div className={styles.formGroup}>
+              <label htmlFor="email">Email Address <span>*</span></label>
               <input
-                id="password"
-                  placeholder="Enter a password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                type="email"
+                id="email"
+                placeholder={`user@example.com`}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="fullName">Full Name <span>*</span></label>
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Nkechi Amina, Aminu"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="password">Password <span>*</span></label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  id="password"
+                    placeholder="Enter a password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    type={showPassword ? "text" : "password"}
+                  />
+                  <button
+                    type="button"
+                    className={styles.passwordToggle}
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+                  </button>
+                </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="confirmPassword">Confirm Password <span>*</span></label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  id="confirmPassword"
+                  placeholder="Re-enter password"
                   required
-                  type={showPassword ? "text" : "password"}
+                  value={confirmPass}
+                  onChange={e => setConfirmPass(e.target.value)}
+                  type={showPassword ? "text" :"password"}
                 />
                 <button
                   type="button"
@@ -99,42 +123,22 @@ const UserRegister = () => {
                   {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
                 </button>
               </div>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="confirmPassword">Confirm Password <span>*</span></label>
-            <div className={styles.passwordWrapper}>
-              <input
-                id="confirmPassword"
-                placeholder="Re-enter password"
-                required
-                value={confirmPass}
-                onChange={e => setConfirmPass(e.target.value)}
-                type={showPassword ? "text" :"password"}
-              />
-              <button
-                type="button"
-                className={styles.passwordToggle}
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
-              </button>
             </div>
-          </div>
 
-          <button
-            type="submit"
-            className={`${styles.submitButton} btn-primary`}
-          >
-            Submit 
-          </button>
+            <button
+              type="submit"
+              className={`${styles.submitButton} btn-primary`}
+            >
+              Submit 
+            </button>
 
-          <AltAuth />
+            <AltAuth />
 
-          <a href={`/auth/user`} className={styles.authRedirect}>
-            <p> Already have an account? Sign in</p>
-          </a>
-        </form>
+            <a href={`/auth/user`} className={styles.authRedirect}>
+              <p> Already have an account? Sign in</p>
+            </a>
+          </form>
+        </div>
       </div>
     </div>
   );

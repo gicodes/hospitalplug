@@ -38,10 +38,21 @@ const HospitalRegister = () => {
   };
 
   return (
-    <div className={styles.page}>
-      <div className={styles.authHeader}>
-        <h1>Hospital Registration</h1>
-        <p> healthcare institution? Register an account now</p>
+    <div className={styles.page}><div className={styles.leftPane}>
+        <div className={styles.leftPaneText}>
+          <h4>Be the administrator...</h4>
+          <p>▾ Sign up with professional email account</p>
+          <p>▾ Submit OTP for email verification </p>
+          <p>▾ Complete onboarding process</p>
+          <p>▾ Set up password and submit</p>
+          <p>▾ Good job! Now onboard staff</p>
+        </div>
+      </div>
+
+      <div className={styles.rightPane}>
+        <div className={styles.authHeader}>
+        <h1>Register Institution</h1>
+        <p> Do you run a healthcare center? <span>Join our program now and save lives</span></p>
       </div>
 
       <div className={styles.registerContainer}>
@@ -69,6 +80,7 @@ const HospitalRegister = () => {
           </a>
         </form>
       </div>
+    </div>
     </div>
   );
 };
