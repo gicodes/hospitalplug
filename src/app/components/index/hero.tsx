@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import styles from "../../page.module.css";
-import background from '../../assets/background.svg';
 import { BsFillPlugFill } from "react-icons/bs";
 import { SiWorldhealthorganization } from "react-icons/si";
 import {

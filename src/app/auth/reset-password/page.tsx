@@ -41,7 +41,7 @@ const ResetPasswordPage = () => {
 
       showAlert("success", "Password reset successful!");
       router.push(`/auth/${role}`)
-    } catch (err) {
+    } catch {
       showAlert("error", "Failed to reset password. Please try again!")
     } finally {
       stopLoading()

@@ -26,7 +26,7 @@ const ForgotPasswordPage = () => {
 
       showAlert("success", "Redirecting to Reset Password");
       router.push(`/auth/reset-password?token=${token}`)
-    } catch (err) {
+    } catch {
       showAlert("error", "Failed to fetch user credentials")
     } finally {
       stopLoading()
