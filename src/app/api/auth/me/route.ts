@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET!);
     return NextResponse.json({ user: payload });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ user: null });
   }
 }

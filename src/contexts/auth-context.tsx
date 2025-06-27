@@ -2,6 +2,7 @@
 
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [role, setRole] = useState<Role>(null);
   const [loading, setLoading] = useState(true);
 
-  const resolveAuth = async () => {
+  const resolveAuth = useCallback(async () => {
     setLoading(true);
     try {
       if (status === 'authenticated' && session?.user) {
@@ -58,7 +59,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [session, status]);
 
   useEffect(() => {
     resolveAuth();
