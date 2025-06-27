@@ -1,6 +1,6 @@
 'use client'
 
-import axios from 'axios';
+import api from '@/lib/axios';
 import React, { useState } from 'react'
 import styles from '../page.module.css';
 import { useRouter } from 'next/navigation';
@@ -19,7 +19,7 @@ const ForgotPasswordPage = () => {
       setIsLoading(true)
 
       const endpoint = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/forgot-password`
-      const res = await axios.post(endpoint, { email });
+      const res = await api.post(endpoint, { email });
 
       localStorage.setItem('token', res.data.token);
       const token = res.data.token;

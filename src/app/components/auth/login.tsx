@@ -1,13 +1,11 @@
 'use client';
 
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import styles from '../../auth/page.module.css';
-import { useAlert } from '@/contexts/alert-context';
-import { useLoading } from '@/contexts/loading-context';
 import { FcGoogle } from 'react-icons/fc';
+import useLogin from '@/app/hooks/useLogin';
+import styles from '../../auth/page.module.css';
+import React, { useEffect, useState } from 'react';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 
 interface LoginProps {
@@ -16,13 +14,25 @@ interface LoginProps {
   buttonLabel?: string;
 }
 
+const googleAuth = () => {
+  signIn('google',  {
+    callbackUrl: '/'}).then(() => {
+    Cookies.set('role', 'user');
+  })
+}
+
 export const AltAuth = () => (
   <div className={styles.multiLoginOption}>
     <span>
       <hr/> Or sign in with <hr/>
     </span>
-    <button onClick={() => signIn('google')} className="btn-secondary" >
-      <span> <FcGoogle fill='inherit' /> Google </span>
+    <button 
+      onClick={googleAuth} 
+      className="btn-secondary"
+    >
+      <span> 
+        <FcGoogle fill='inherit' /> Google 
+      </span>
     </button>
   </div>
 )
@@ -37,11 +47,9 @@ const Login: React.FC<LoginProps> = ({
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   
-  const router = useRouter();
-  const { showAlert } = useAlert();
-  const { startLoading, stopLoading } = useLoading();
+  const login = useLogin();
 
-   useEffect(() => {
+  useEffect(() => {
     const saved = localStorage.getItem('rememberMeData');
     if (saved) {
       const { email, password } = JSON.parse(saved);
@@ -51,43 +59,21 @@ const Login: React.FC<LoginProps> = ({
     }
   }, []);
 
-  const handleLogin = async () => {
-    try {
-      startLoading();
-
-      if (rememberMe) {
-        localStorage.setItem('rememberMeData', JSON.stringify({ email, password }));
-      } else {
-        localStorage.removeItem('rememberMeData');
-      }
-
-      const endpoint = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/${profile}`
-      const res = await axios.post(endpoint, { email, password });
-
-      localStorage.setItem('token', res.data.token);
-
-      showAlert('success', "Login Successful. Welcome Back!")
-      router.push(`/dashboard/${profile}`);
-    } catch (err) {
-      let message = 'Login failed';
-
-      if (axios.isAxiosError(err) && err.response) {
-        message = err.response.data?.message || err.response.statusText || message;
-      } else if (err instanceof Error) {
-        message = err.message;
-      }
-      showAlert('error', message);
-    } finally {
-      stopLoading();
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (onSubmit) {
       onSubmit({ email, password });
-    } else await handleLogin();
+    } else {
+      await login({
+        email,
+        password,
+        profile: profile ?? '',
+        rememberMe,
+        startLoading: () => {},
+        stopLoading: () => {},
+      });
+    }
   };
 
   return (

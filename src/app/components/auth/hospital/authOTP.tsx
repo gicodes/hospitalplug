@@ -1,6 +1,7 @@
 'use client';
 
 import axios from 'axios';
+import api from '@/lib/axios';
 import React, { useState } from 'react'
 import styles from '@/app/auth/hospital/onboarding/page.module.css';
 
@@ -22,7 +23,7 @@ const VerifyOTP: React.FC<StepProps> = ({onNext, userEmail, onVerified, onWrongE
   const handleVerify = async () => {
     try {
       setLoading(true);
-      const result = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/hospital/register/verify-code`, {
+      const result = await api.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/hospital/register/verify-code`, {
         email: userEmail,
         code,
       });

@@ -1,11 +1,12 @@
 'use client';
 
-import axios from 'axios';
+import api from '@/lib/axios';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../../auth/page.module.css';
 import { useAlert } from '@/contexts/alert-context';
 import { useLoading } from '@/contexts/loading-context';
+import axios from 'axios';
 
 const HospitalRegister = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const HospitalRegister = () => {
     e.preventDefault();
     try {
       startLoading();
-      await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/hospital/register/request-code`, {
+      await api.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/hospital/register/request-code`, {
         email: email,
       });
 

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import api from "@/lib/axios";
 import { StepProps } from "./authOTP";
-import axios from "axios";
+import React, { useState } from "react";
 import { IoDocumentAttach } from "react-icons/io5";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import styles from '../../../auth/hospital/onboarding/page.module.css';
@@ -29,7 +29,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
     setSaving(true);
 
     try {
-      await axios.post('/api/auth/hospital/register/save', { business: local });
+      await api.post('/api/auth/hospital/register/save', { business: local });
       alert('Business information saved successfully!');
     } catch (err) {
       console.error(err);
@@ -53,7 +53,7 @@ export default function Step3({ onBack, onNext, form, setForm }: StepProps) {
 
     try {
       setSubmitting(true);
-      await axios.post('/api/auth/hospital/register/submit', finalPayload);
+      await api.post('/api/auth/hospital/register/submit', finalPayload);
       alert('Successfully submitted!');
       onNext(); // or redirect
       // alert-- Verifying these information may take some time. 

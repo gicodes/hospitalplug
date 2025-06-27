@@ -22,7 +22,7 @@ const Header = () => {
   const [authMenuOpen, setAuthMenuOpen] = useState(false);
   const toggleAuthMenu = () => setAuthMenuOpen((prev) => !prev);
 
-  const { user, role, } = useAuth();
+  const { user, role } = useAuth();
   const logout = useLogout();
 
   return (
@@ -56,7 +56,10 @@ const Header = () => {
         { role!== 'user' &&  
           <>
             { role === 'hospital' ? (
-              <button className='btn-secondary'>See Subscription</button>
+              <>
+                <button className='btn-secondary'>See Subscription</button>
+                <button className='btn-disabled'>Create Campaign</button>
+              </>
             ) : (
               <>
                 <button className='btn-primary'>
@@ -70,30 +73,36 @@ const Header = () => {
           </>
         }
         
-        <div onClick={toggleAuthMenu}>
+        <div id='auth-icon' onClick={toggleAuthMenu}>
           {user ? (
             <Image
-              src={user?.image || '/default-avatar.png'}
+              src={user?.image || '/user-default-img.png'}
               alt="User"
               className={styles.signedInUserIcon}
-              width={40}
-              height={40}
+              width={32}
+              height={32}
               objectFit='cover'
             />
           ) : (
-            <FaUserCircle size={24}  className={styles.userIcon}/>
+            <FaUserCircle size={24} className={styles.userIcon}/>
           )}
         </div>
 
         {authMenuOpen && (
-          <div className={styles.authDropdown}>
+          <div id='auth-drop-down' className={styles.authDropdown}>
             {user ? (
               <>
-                <p><strong>{user?.name || 'Untitled User'}</strong></p>
-                <p>{user.email}</p>
-                {role === 'hospital' && <a href="/hospital/dashboard">Dashboard</a>}
-                {role === 'user' && <a href="/profile">Profile</a>}
-                <button onClick={() => logout}>Sign out</button>
+                <div className={styles.authUserInfo}>
+                  <p>{user.name ?? (user.role==='user' ? "Untitled User" : "Hospital X")}</p>
+                  <span>{user.email}</span>
+                </div>
+                <a href={`/dashboard/${user.role}`}>Dashboard</a>
+                <button 
+                  onClick={logout}
+                  className='btn-tertiary'
+                >
+                  Sign out
+                </button>
               </>
               ) : (
               <>

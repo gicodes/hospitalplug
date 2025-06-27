@@ -39,8 +39,8 @@ class Hospital extends Model<HospitalAttributes, HospitalCreationAttributes> imp
   public documents?: object;
   public onboardingStep!: number;
   public verified!: boolean;
-  public verificationCode?: string; // <-- Added
-  public isEmailVerified?: boolean; // <-- Added
+  public verificationCode?: string; 
+  public isEmailVerified?: boolean;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }

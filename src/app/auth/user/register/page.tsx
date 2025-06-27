@@ -1,6 +1,7 @@
 'use client';
 
 import axios from 'axios';
+import api from '@/lib/axios';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../../auth/page.module.css';
@@ -28,7 +29,7 @@ const UserRegister = () => {
     
     try {
       const endpoint = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/user/register`
-      const res = await axios.post(endpoint, { name, email, password });
+      const res = await api.post(endpoint, { name, email, password });
 
       localStorage.setItem('token', res.data.token);
 

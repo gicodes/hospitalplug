@@ -1,6 +1,6 @@
 'use client'
 
-import axios from 'axios';
+import api from '@/lib/axios';
 import React, { useState } from 'react'
 import styles from '../page.module.css';
 import { useRouter } from 'next/navigation';
@@ -36,7 +36,7 @@ const ResetPasswordPage = () => {
         return;
       }
 
-      const res = await axios.post(endpoint, { token, newPassword });
+      const res = await api.post(endpoint, { token, newPassword });
       const role = res.data.role;
 
       showAlert("success", "Password reset successful!");
