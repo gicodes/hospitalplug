@@ -126,10 +126,9 @@
     padding: 10px;
     border-radius: 8px;
     color: #404040;
-    border: none;
-    background-color: #ccc;
+    border: 0.1px solid silver;
+    background-color: inherit;
     outline: none;
-    box-shadow: none;
   }
 
   input:focus, input:not(:placeholder-shown) {
@@ -139,18 +138,18 @@
 
   .select {
     outline: none;
-    color: white;
+    color: #333;
     height: max-content;
     padding: 10px;
     min-height: 36px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    background-color: #909090;
-    /* Chevron/dropdown arrow for select */
+    background-color: whitesmoke;
+
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 8L15 1' stroke='white' stroke-width='2'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L8 8L15 1' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 12px 10px;

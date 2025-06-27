@@ -14,7 +14,7 @@ const AdminLogin = () => {
           <p>Sign in and manage organizations and users</p>
         </div>
         
-        <Login profile='Admin' />
+        <Login profile='admin' />
       </div>
     </div>
   )

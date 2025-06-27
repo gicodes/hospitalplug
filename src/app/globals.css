@@ -138,7 +138,6 @@ h6 {
   background-color: whitesmoke;
   border: 0.1px solid transparent;
 
-  /* On hover, change background to wheat and color to #2D68C4 */
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background-color: wheat;
@@ -272,17 +271,17 @@ h6 {
   border: 0.1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  background-color: wheat;
+  background-color: #ccc;
   font-size: 12.5px;
 }
 
 .radioTag input, .tickbox {
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 0.66rem;
+  height: 0.66rem;
 
   @media screen and (max-width: 768px) {
-    width: 0.66rem;
-    height: 0.66rem;
+    width: 0.6rem;
+    height: 0.6rem;
   }
 }
 
