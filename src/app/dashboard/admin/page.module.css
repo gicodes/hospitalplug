@@ -150,6 +150,7 @@
   .menuGrid {
     gap: 10px;
     display: grid;
+    padding: 25px 0 0;
   }
 
   .menuItem {
