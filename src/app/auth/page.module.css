@@ -246,9 +246,8 @@
         border: 0.1px solid #ccc;
         background-color: transparent;
 
-        &:focus {
-          border-color: #2D68C4;
-        }
+        transition: border-color 0.2s;
+
         &::placeholder {
           color: #999;
         }
@@ -459,10 +458,8 @@
     border: 0.1px solid #ccc;
     background-color: transparent;
     
+    transition: border-color 0.2s;
 
-    &:focus {
-      border-color: #2D68C4;
-    }
     &::placeholder {
       color: #999;
     }
@@ -476,6 +473,7 @@
   .passwordWrapper input {
     width: 100%;
     padding-right: 40px;
+    transition: border-color 0.2s;
   }
 
   .passwordToggle {
