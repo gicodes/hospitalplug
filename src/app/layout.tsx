@@ -30,7 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <header className={styles.header}>
             <Header />
           </header>
-          {children}
+          <main className={styles.main}>
+            {children}
+          </main>
           <footer className={styles.footer}>
             <Footer />
           </footer>

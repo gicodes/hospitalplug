@@ -1,7 +1,8 @@
 .page {
   width: 100%;
-  height: auto;
-  margin: 100px auto;
+  height: 100%;
+  min-height: 100vh;
+  margin: 120px auto;
   padding: 5px;
   max-width: 1200px;
   text-align: center;
@@ -25,8 +26,12 @@
     border: 0.1px solid #ccc;
   }
 
+  @media screen and (min-width: 768px) and (max-width: 820px) {
+    margin: 160px auto 0;
+  }
+
   @media screen and (max-width: 768px) {
-    margin: 150px auto 0;
+    margin: 155px auto 0;
   }
 }
 
@@ -39,6 +44,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   width: 100%;
   max-width: 500px;
+
 
   p { 
     color: #404040;
@@ -248,6 +254,12 @@
       padding: 7.5px;
       border-bottom: #404040 1px solid;
     }
+  }
+
+  label {
+    font-size: 12px;
+    margin: 0 0 -10px;
+    text-align: left;
   }
 }
 

@@ -1,106 +1,132 @@
 'use client';
 
+import React from 'react';
 import { StepProps } from './authOTP';
-import React, { useState } from 'react';
-import styles from '../../../auth/hospital/onboarding/page.module.css';
 import { hospitalTypes } from '@/app/assets/hospitalTypes';
+import styles from '../../../auth/hospital/onboarding/page.module.css';
+import { OnboardingForm } from '@/app/auth/hospital/onboarding/page';
 import { countries, majorCitiesByCountry, statesInNigeria, lgasInNigeria } from '@/app/assets/locations';
 
-type LocalState = {
-  name: string;
-  contact: {
-    phone: string;
-    whatsapp: string;
-    email: string;
-    website: string;
-  };
-  address: {
-    country: string;
-    state: string;
-    city: string;
-    street: string;
-  };
-  type: string[];
-};
-
-export default function Step1({ onNext, setForm }: StepProps) {
-  const [local, setLocal] = useState<LocalState>({
-    name: '',
-    contact: {
-      phone: '',
-      whatsapp: '',
-      email: '',
-      website: '',
-    },
-    address: {
-      country: '',
-      state: '',
-      city: '',
-      street: '',
-    },
-    type: [],
-  });
-
+export default function Step1({ onNext, form, setForm }: StepProps) {
   const handleSubmit = () => {
-    setForm((prev: Record<string, unknown>
-) => ({ ...prev, basic: local }));
+    setForm((prev: OnboardingForm) => ({
+      ...prev,
+      contact: {
+        phone: form.contact?.phone || '',
+        email: form.contact?.email || '',
+        whatsapp: form.contact?.whatsapp || '',
+        website: form.contact?.website || '',
+      },
+    }));
     onNext();
   };
 
-  const isNigeria = local.address.country === 'Nigeria';
+  const isNigeria = form.address?.country === 'Nigeria';
   const availableCities = isNigeria
-    ? lgasInNigeria[local.address.state] || []
-    : majorCitiesByCountry[local.address.country] || [];
+    ? (form.address?.state ? lgasInNigeria[form.address.state] || [] : [])
+    : (form.address?.country ? majorCitiesByCountry[form.address.country] || [] : []);
 
   return (
     <div className={styles.steps}>
       <h4>Basic Info</h4>
 
+      <label>Name of Institution</label>
       <input
+        type='text'
         required
         placeholder="Hospital Name"
-        value={local.name}
-        onChange={e => setLocal({ ...local, name: e.target.value })}
+        value={form.name || ''}
+        onChange={e => setForm(prev => ({
+          ...prev,
+          name: e.target.value,
+        }))}
       />
 
       <div className={styles.inputGroup}>
         <input
           required
           placeholder="Phone"
-          value={local.contact.phone}
-          onChange={e => setLocal({ ...local, contact: { ...local.contact, phone: e.target.value } })}
+          value={form.contact?.phone || ''}
+          onChange={e => setForm(prev => ({
+            ...prev,
+            contact: {
+              ...prev.contact,
+              phone: e.target.value,
+              email: prev.contact?.email || '',
+              whatsapp: prev.contact?.whatsapp || '',
+              website: prev.contact?.website || '',
+            },
+          }))}
         />
         <input
           placeholder="Whatsapp"
-          value={local.contact.whatsapp}
-          onChange={e => setLocal({ ...local, contact: { ...local.contact, whatsapp: e.target.value } })}
+          value={form.contact?.whatsapp || ''}
+          onChange={e => setForm(prev => ({
+            ...prev,
+            contact: {
+              ...prev.contact,
+              whatsapp: e.target.value,
+              phone: prev.contact?.phone || '',
+              email: prev.contact?.email || '',
+              website: prev.contact?.website || '',
+            },
+          }))}
         />
       </div>
 
       <div className={styles.inputGroup}>
         <input
+          type='email'
           required
-          placeholder="Email"
-          value={local.contact.email}
-          onChange={e => setLocal({ ...local, contact: { ...local.contact, email: e.target.value } })}
+          placeholder="Customer Support Email"
+          value={form.contact?.email || ''}
+          onChange={e => setForm(prev => ({
+            ...prev,
+            contact: {
+              ...prev.contact,
+              email: e.target.value,
+              phone: prev.contact?.phone || '',
+              whatsapp: prev.contact?.whatsapp || '',
+              website: prev.contact?.website || '',
+            },
+          }))}
         />
         <input
           placeholder="Website"
-          value={local.contact.website}
-          onChange={e => setLocal({ ...local, contact: { ...local.contact, website: e.target.value } })}
+          value={form.contact?.website || ''}
+          onChange={e => setForm(prev => ({
+            ...prev,
+            contact: {
+              ...prev.contact,
+              website: e.target.value,
+              phone: prev.contact?.phone || '',
+              email: prev.contact?.email || '',
+              whatsapp: prev.contact?.whatsapp || '',
+            },
+          }))}
         />
       </div>
-      
+
       <span className={styles.subtitle}>Set your location</span>
       <div className={styles.inputGroup}>
         <select
           required
           className={styles.select}
-          value={local.address.country}
-          onChange={e => setLocal({ ...local, address: { ...local.address, country: e.target.value, state: '', city: '' } })}
+          value={form.address?.country || ''}
+          onChange={e => setForm(prev => ({
+            ...prev,
+            address: {
+              ...prev.address,
+              country: e.target.value,
+              state: '',
+              city: '',
+              street: prev.address?.street || '',
+              zip: prev.address?.zip || '',
+            },
+          }))}
         >
           <option value="">Select Country</option>
-          {countries.map((country) => (
+          {countries.map(country => (
             <option key={country} value={country}>{country}</option>
           ))}
         </select>
@@ -108,11 +134,21 @@ export default function Step1({ onNext, setForm }: StepProps) {
         {isNigeria && (
           <select
             className={styles.select}
-            value={local.address.state}
-            onChange={e => setLocal({ ...local, address: { ...local.address, state: e.target.value, city: '' } })}
+            value={form.address?.state || ''}
+            onChange={e => setForm(prev => ({
+              ...prev,
+              address: {
+                ...prev.address,
+                state: e.target.value,
+                city: '',
+                country: prev.address?.country || '',
+                street: prev.address?.street || '',
+                zip: prev.address?.zip || '',
+              },
+            }))}
           >
             <option value="">Select State</option>
-            {statesInNigeria.map((state) => (
+            {statesInNigeria.map(state => (
               <option key={state} value={state}>{state}</option>
             ))}
           </select>
@@ -120,11 +156,21 @@ export default function Step1({ onNext, setForm }: StepProps) {
 
         <select
           className={styles.select}
-          value={local.address.city}
-          onChange={e => setLocal({ ...local, address: { ...local.address, city: e.target.value } })}
+          value={form.address?.city || ''}
+          onChange={e => setForm(prev => ({
+            ...prev,
+            address: {
+              ...prev.address,
+              city: e.target.value,
+              state: prev.address?.state || '',
+              country: prev.address?.country || '',
+              street: prev.address?.street || '',
+              zip: prev.address?.zip || '',
+            },
+          }))}
         >
           <option value="">Select {isNigeria ? 'LGA' : 'City'}</option>
-          {availableCities.map((city) => (
+          {availableCities.map(city => (
             <option key={city} value={city}>{city}</option>
           ))}
         </select>
@@ -134,34 +180,46 @@ export default function Step1({ onNext, setForm }: StepProps) {
         required
         className={styles.input}
         placeholder="Street Address"
-        value={local.address.street}
-        onChange={e => setLocal({ ...local, address: { ...local.address, street: e.target.value } })}
+        value={form.address?.street || ''}
+        onChange={e => setForm(prev => ({
+          ...prev,
+          address: {
+            ...prev.address,
+            street: e.target.value,
+            city: prev.address?.city || '',
+            state: prev.address?.state || '',
+            zip: prev.address?.zip || '',
+            country: prev.address?.country || '',
+          },
+        }))}
       />
 
       <span className={styles.subtitle}>Select institution type(s)</span>
       <div className={styles.radioGroup}>
-        {hospitalTypes.map((t) => (
-          <label key={t.name} className={"radioTag"}>
+        {hospitalTypes.map(t => (
+          <label key={t.name} className="radioTag">
             <span style={{ marginRight: 4 }}>{t.name}</span>
             <input
               required
               type="checkbox"
-              checked={local.type.includes(t.name)}
+              className="tickbox"
+              checked={form.type?.includes(t.name as OnboardingForm['type'][number]) || false}
               onChange={e => {
-                const checked = e.target.checked;
-                setLocal((prev: LocalState) => ({
+                const currentTypes = form.type || [];
+                const updated = e.target.checked
+                  ? [...currentTypes, t.name as OnboardingForm['type'][number]]
+                  : currentTypes.filter(m => m !== t.name);
+                setForm(prev => ({
                   ...prev,
-                  type: checked
-                    ? [...prev.type, t.name]
-                    : prev.type.filter((name: string) => name !== t.name)
+                  type: updated,
                 }));
               }}
             />
           </label>
         ))}
       </div>
-      <br/>
 
+      <br />
       <button className="btn-success mx-auto full-width max-width-360" onClick={handleSubmit}>Next</button>
     </div>
   );

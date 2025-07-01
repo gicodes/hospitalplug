@@ -1,34 +1,7 @@
+import { OnboardingData } from '@/app/auth/hospital/onboarding/page';
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/sequelize';
 import Hospital from '@/model/hospital';
-
-interface OnboardingData {
-  email: string;
-  data: {
-    contact?: {
-      name: string;
-      phone: string;
-      email: string;
-    };
-    address?: {
-      street: string;
-      city: string;
-      state: string;
-      zip: string;
-      country: string;
-    };
-    operations?: {
-      hours: string;
-      services: string[];
-    };
-    docs?: string[];
-    business?: {
-      registrationNumber: string;
-      taxId: string;
-    };
-    password?: string;
-  };
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -62,7 +35,7 @@ export async function POST(req: NextRequest) {
         await hospital.update({ operations: data.operations });
         break;
       case 4:
-        await hospital.update({ type: data.docs });
+        await hospital.update({ documents: data.documents as object });
         break;
       case 5:
         await hospital.update({ business: data.business });

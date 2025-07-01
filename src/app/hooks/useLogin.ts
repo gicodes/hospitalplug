@@ -40,7 +40,7 @@ const useLogin = () => {
       await refreshAuth();
 
       showAlert('success', 'Login Successful. Welcome Back!');
-      router.push(`/dashboard/${profile}`);
+      router.push(`/dashboard/${profile}/[menu]`);
     } catch (err) {
       let message = 'Login failed';
 

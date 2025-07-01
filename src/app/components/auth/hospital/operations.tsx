@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from "react";
+import React from "react";
 import { StepProps } from "./authOTP";
 import styles from '../../../auth/hospital/onboarding/page.module.css';
+import { OnboardingForm } from "@/app/auth/hospital/onboarding/page";
 
 const essentialServices = {
   hasFoodCanteen: "Food Canteen",
@@ -12,86 +13,44 @@ const essentialServices = {
   has247PowerSupply: "24/7 Power Supply",
   hasSteadyWaterSupply: "Steady Water Supply",
   hashealthcareFacilities: "Health Care Facilities",
-};
+} as const;
 
-export const equipmentsAndFacilities = {
-  hasPharmacy: "Pharmacy",
-  hasLaboratory: "Laboratory",
-  hasRadiology: "Radiology",
-  hasBloodBank: "Blood Bank",
-  hasDialysis: "Dialysis",
-  hasICU: "ICU",
-  hasTheatre: "Theatre",
-};
-
-export default function Step3({ onBack, onNext, setForm }: StepProps) {
-  const [local, setLocal] = useState<{
-    schedule: string;
-    openingHours: string;
-    serviceSpecialties: string[];
-    hasEmergency: boolean;
-    hasAmbulance: boolean;
-    hasFoodCanteen: boolean;
-    securePremises: boolean;
-    numberOfHealthWorkers: string;
-    has247PowerSupply: boolean;
-    hasSteadyWaterSupply: boolean;
-    hashealthcareFacilities: boolean;
-    modeOfPayment: string[];
-  }>({
-    schedule: '', 
-    openingHours: '', 
-    serviceSpecialties: [],
-    hasEmergency: false,
-    hasAmbulance: false,
-    hasFoodCanteen: false,
-    securePremises: false,
-    numberOfHealthWorkers: '',
-    has247PowerSupply: false,
-    hasSteadyWaterSupply: false,
-    hashealthcareFacilities: false,
-    modeOfPayment: [], 
-  });
-
-  const handleSubmit = () => {
-    setForm((prev: Record<string, unknown>) => ({
-      ...prev,
-      operations: local,
-    }));
-    onNext();
-  };
+export default function Step3({ form, onBack, onNext, setForm }: StepProps) {
+  const handleSubmit = () => onNext();
 
   const handleBack = () => {
-    setForm((prev: Record<string, unknown>) => ({
-      ...prev,
-      operations: local,
-    }));
     if (onBack) onBack();
-  }
+  };
 
   return (
     <div className={styles.steps}>
       <h4>Operations & Services</h4>
 
+      <label>Service Specialisation</label>
       <input
         type="text"
         className={styles.input}
-        placeholder="Specialisation:  General, Pediatrics, Psychiatry, Surgery, Obstetrics, etc."
-        value={local.serviceSpecialties.join(', ')}
-        onChange={e => setLocal({ ...local, serviceSpecialties: e.target.value.split(',').map(s => s.trim()) })}
-      />
-
-      <input 
-        className={styles.input}
-        placeholder="Opening Hours:  8am * Mon - Fri" 
-        value={local.openingHours} 
-        onChange={e => setLocal({ ...local, openingHours: e.target.value })} 
+        placeholder="General, Pediatrics, Psychiatry, Surgery, Obstetrics, etc."
+        value={form.operations?.serviceSpecialties?.join(', ') || ''}
+        onChange={e => setForm(prev => ({
+          ...prev,
+          operations: {
+            ...prev.operations,
+            serviceSpecialties: e.target.value.split(',').map(s => s.trim()),
+          },
+        }))}
       />
 
       <select 
-        value={local.schedule} 
+        value={form.operations?.schedule || ''}
         className={styles.select}
-        onChange={e => setLocal({ ...local, schedule: e.target.value })}
+        onChange={e => setForm(prev => ({
+          ...prev,
+          operations: {
+            ...prev.operations,
+            schedule: e.target.value,
+          },
+        }))}
       >
         <option value="">Select Schedule</option>
         <option value="8hrs-weekdays">8 hrs, Mon - Fri</option>
@@ -99,10 +58,30 @@ export default function Step3({ onBack, onNext, setForm }: StepProps) {
         <option value="24-7">24/7 Open services</option>
       </select>
 
+      <label>Indicate Opening hours (if schedule is undefined)</label>
+      <input 
+        className={styles.input}
+        placeholder="Opening Hours:  8am * Mon - Fri" 
+        value={form.operations?.openingHours || ''}
+        onChange={e => setForm(prev => ({
+          ...prev,
+          operations: {
+            ...prev.operations,
+            openingHours: e.target.value,
+          },
+        }))}
+      />
+
       <select
-        value={local.numberOfHealthWorkers}
+        value={form.operations?.numberOfHealthWorkers || ''}
         className={styles.select}
-        onChange={e => setLocal({ ...local, numberOfHealthWorkers: e.target.value })}
+        onChange={e => setForm(prev => ({
+          ...prev,
+          operations: {
+            ...prev.operations,
+            numberOfHealthWorkers: e.target.value,
+          },
+        }))}
       >
         <option value="">Estimated Number of Health Workers</option>
         <option value="<10">Less than 10</option>
@@ -120,8 +99,14 @@ export default function Step3({ onBack, onNext, setForm }: StepProps) {
               {label}?
               <input
                 type="checkbox"
-                checked={local[key as keyof typeof essentialServices] as boolean}
-                onChange={e => setLocal({ ...local, [key]: e.target.checked })}
+                checked={Boolean(form.operations?.[key as keyof OnboardingForm['operations']])}
+                onChange={e => setForm(prev => ({
+                  ...prev,
+                  operations: {
+                    ...prev.operations,
+                    [key]: e.target.checked,
+                  },
+                }))}
               />
             </label>
           </div>
@@ -132,7 +117,7 @@ export default function Step3({ onBack, onNext, setForm }: StepProps) {
       <span className={styles.caption}>You can select multiple options</span>
       <div className={styles.radioGroup}>
         {["cash", "card", "insurance", "mobileMoney"].map((mode) => (
-            <label key={mode} className={"radioTag"}>
+          <label key={mode} className="radioTag">
             {mode === "cash" && "Cash"}
             {mode === "card" && "Card"}
             {mode === "insurance" && "Insurance"}
@@ -140,24 +125,30 @@ export default function Step3({ onBack, onNext, setForm }: StepProps) {
             <input
               type="checkbox"
               className="tickbox"
-              checked={local.modeOfPayment.includes(mode)}
+              checked={form.operations?.modesOfPayments?.includes(mode as OnboardingForm['operations']['modesOfPayments'][number]) || false}
               onChange={e => {
-              const updated = e.target.checked
-                ? [...local.modeOfPayment, mode]
-                : local.modeOfPayment.filter((m: string) => m !== mode);
-              setLocal({ ...local, modeOfPayment: updated });
+                const currentModes = form.operations?.modesOfPayments || [];
+                const updated = e.target.checked
+                  ? [...currentModes, mode as OnboardingForm['operations']['modesOfPayments'][number]]
+                  : currentModes.filter((m) => m !== mode);
+                setForm(prev => ({
+                  ...prev,
+                  operations: {
+                    ...prev.operations,
+                    modesOfPayments: updated,
+                  },
+                }));
               }}
             />
-            </label>
+          </label>
         ))}
       </div>
-      <br/>
-
+      
+      <br />
       <div className="btn-group">
         <button className="btn-secondary" onClick={handleBack}>Back</button>
         <button className="btn-success" onClick={handleSubmit}>Next</button>
       </div>
-      
     </div>
   );
 }

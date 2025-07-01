@@ -56,19 +56,19 @@ const Header = () => {
         { role!== 'user' &&  
           <>
             { role === 'hospital' ? (
-              <>
+              <div className={styles.flex}>
                 <button className='btn-secondary'>See Subscription</button>
                 <button className='btn-disabled'>Create Campaign</button>
-              </>
+              </div>
             ) : (
-              <>
+              <div className={styles.flex}>
                 <button className='btn-primary'>
                   <a href='/auth/hospital/register'>Register a Hospital</a>
                 </button>
                 <button className='btn-secondary'>
                   <a href='/auth/hospital'>Hospital Sign in</a>
                 </button>
-              </>
+              </div>
             )}
           </>
         }
@@ -96,7 +96,7 @@ const Header = () => {
                   <p>{user.name ?? (user.role==='user' ? "Untitled User" : "Hospital X")}</p>
                   <span>{user.email}</span>
                 </div>
-                <a href={`/dashboard/${user.role}`}>Dashboard</a>
+                <a href={`/dashboard/${user.role}/[menu]`}>Dashboard</a>
                 <button 
                   onClick={logout}
                   className='btn-tertiary'

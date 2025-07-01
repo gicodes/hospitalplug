@@ -8,10 +8,11 @@ import Step1 from '@/app/components/auth/hospital/authOTP';
 import Step2 from '@/app/components/auth/hospital/basicInfo';
 import Step3 from '@/app/components/auth/hospital/operations';
 import Step456End from '@/app/components/auth/hospital/submit';
+import { OnboardingForm } from './page';
 
 export default function HospitalOnboarding() {
-  const [step, setStep] = useState(2);
-  const [form, setForm] = useState({});
+  const [step, setStep] = useState(1);
+  const [form, setForm] = useState<OnboardingForm>({} as OnboardingForm);
 
   const searchParams = useSearchParams();
   const email = searchParams.get('email');

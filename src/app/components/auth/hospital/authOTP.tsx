@@ -4,6 +4,7 @@ import axios from 'axios';
 import api from '@/lib/axios';
 import React, { useState } from 'react'
 import styles from '@/app/auth/hospital/onboarding/page.module.css';
+import { OnboardingForm } from '@/app/auth/hospital/onboarding/page';
 
 export interface StepProps {
   userEmail?: string;
@@ -11,8 +12,8 @@ export interface StepProps {
   onWrongEmail?: () => void;
   onNext: () => void;
   onBack?: () => void;
-  form: Record<string, unknown>;
-  setForm: React.Dispatch<React.SetStateAction<Record<string, unknown>>>;
+  form: OnboardingForm;
+  setForm: React.Dispatch<React.SetStateAction<OnboardingForm>>;
 }
 
 const VerifyOTP: React.FC<StepProps> = ({onNext, userEmail, onVerified, onWrongEmail }) => {
