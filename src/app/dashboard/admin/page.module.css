@@ -1,6 +1,8 @@
 .home {
   width: 100%;
   padding: 20px;
+  min-height: 100vh;
+  height: fit-content;
 }
 
 .statsRow {
@@ -107,4 +109,161 @@
   .title {
     font-size: 11px;
   }
+}
+
+.activationRequests, .recentActivities {
+  padding: 25px 20px;
+  width: 100%;
+}
+
+.listGroup hr { border: 0.01px solid #ccc;}
+
+.requestItem, .activityItem {
+  padding: 5px 0;
+}
+
+.home h4 { 
+  font-size: 24px; 
+  margin: auto 0;
+
+  @media screen and (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+.home h6 {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.home p {
+  font-size: 15px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.listGroup {
+  gap: 10px;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  margin: 25px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  background-color: white;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.listGrid {
+  background-color: white;
+  margin: 25px auto 0;
+  padding: 25px 20px;
+  height: auto;
+  width: 100%;
+  gap: 10px;
+
+  .listHeader {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .filterGroup {
+      gap: 5px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    select { 
+      background-color: transparent;
+      color: black;
+      min-height: 36px;
+    }
+
+    button { min-width: 100px;}
+  }
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f9f9f9;
+}
+
+.action {
+  background: transparent;
+  border: none;
+  display: flex;
+  gap: 10px
+}
+
+.btnSuspend {
+  background: tomato;
+  color: white;
+}
+
+.btnView {
+  background: #eee;
+}
+
+.btnSuspend, .btnView {
+  border-radius: 4px;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.table th:last-child {
+  width: 120px;
+}
+
+.action {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px;
+  max-width: 120px;
+}
+
+.btnView,
+.btnSuspend {
+  flex: 1;
+  padding: 4px 6px;
+  font-size: 12px;
+  background: #2D68C4;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btnSuspend {
+  background: #cc3300;
+}
+
+.filterSelect {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
 }

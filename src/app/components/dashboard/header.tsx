@@ -17,7 +17,6 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const [search, setSearch] = useState('');
 
-  // Define role-specific placeholder
   const getSearchPlaceholder = () => {
     switch (role) {
       case 'admin':
