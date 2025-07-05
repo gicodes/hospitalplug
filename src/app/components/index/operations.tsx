@@ -5,22 +5,22 @@ const steps = [
   {
     icon: <FaSearch />,
     title: "Search for Hospitals",
-    text: "Go to Home, or scroll to the top of this page to find hospitals, clinics, and  healthcare providers near you."
-  },
-  {
-    icon: <FaCalendarCheck />,
-    title: "Register, Book Services",
-    text: "Fill in the necessary details and select Save for Later or Connect Now to receive instant care or following schedule."
-  },
-  {
-    icon: <FaPhoneAlt />,
-    title: "Receive Care",
-    text: "Access your Appointment Cards for details. Attend your scheduled appointments and and get tented to, either in-person or virtually."
+    text: "Need a Service? Scroll to the top (Home) to search for healthcare providers or navigate to Discover page for advanced filters"
   },
   {
     icon: <FaHeartbeat />,
-    title: "Follow Up",
-    text: "Stay updated with your health journey and follow up on treatments."
+    title: "Book A Service",
+    text: "Found somewhere? Good! Start a service by filing a service/ appointment card. You can submit, book for others or save for later"
+  },
+  {
+    icon: <FaPhoneAlt />,
+    title: "Connect instantly",
+    text: "Got the mail? Great! Visit the center with the appointment details from the e-mail, or contact the provider for more info"
+  },
+  {
+    icon: <FaCalendarCheck />,
+    title: "Follow Up, Recommendations",
+    text: "Share your experience with us! And stay updated with your health journey or follow up on treatments, if needed. Goodluck !!"
   }
 ];
 

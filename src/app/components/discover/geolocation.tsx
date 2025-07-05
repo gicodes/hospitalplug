@@ -138,7 +138,7 @@ export default function Geolocation() {
         </div>
 
         <div className={`${styles.hasEmergency} bg-warning`}>
-          <span>Doctor Active</span>
+          <span>Doctor Available</span>
           <input
             type="checkbox"
             name="doctorOnSeat"

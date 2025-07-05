@@ -638,6 +638,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+
+  p {font-size: 14px;}
 }
 
 .sliderContainer {
@@ -775,7 +777,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-  margin: 20px auto;
+  margin: 5px auto;
 
   .card {
     height: auto;

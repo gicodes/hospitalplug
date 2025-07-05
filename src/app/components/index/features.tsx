@@ -19,13 +19,13 @@ const features = [
   {
     bgImage: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG9zcGl0YWxzfGVufDB8fDB8fHww",
     title: "Register a hospital",
-    link: "/staff/register",
+    link: "/auth/hospital/register",
     description: "Get your hospital listed on Hospital Plug",
   },
   {
     bgImage: "https://images.unsplash.com/photo-1580281657702-257584239a55?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA==",
     title: "Bookings",
-    link: "/explore/bookings",
+    link: "/dashboard/user/bookings", 
     description: "Schedule appointments seamlessly with top facilities",
   },
 ];
@@ -43,21 +43,20 @@ export default function FeatureDeck() {
 
   return (
     <div className={styles.featureDeck}>
-      <h4 className="text-center">Discover The Latest </h4>
-
+      <h4 className="text-center">
+        Discover The Latest 
+      </h4>
       <div className={styles.sliderContainer}>
         <button onClick={slideLeft} className={styles.navButton}>‹</button>
         <div className={styles.features}>
           {features.map((feature, index) => {
-            const position =
-              index === currentIndex
-                ? styles.activeCard
-                : index === (currentIndex - 1 + features.length) % features.length
-                ? styles.leftCard
-                : index === (currentIndex + 1) % features.length
-                ? styles.rightCard
-                : styles.hiddenCard;
-
+            const position = index === currentIndex
+              ? styles.activeCard
+              : index === (currentIndex - 1 + features.length) % features.length
+              ? styles.leftCard
+              : index === (currentIndex + 1) % features.length
+              ? styles.rightCard
+              : styles.hiddenCard;
             return (
               <div 
                 key={feature.title} 

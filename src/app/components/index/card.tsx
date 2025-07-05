@@ -41,7 +41,7 @@ export const FeaturedCard = ({ hospital }
   return (
     <div className={styles.card}>
       {hospital.isSubscribed && <div className={styles.isSubscribed} >
-        <FaCrown fill='white'/>
+        <FaCrown fill='gold'/>
       </div>}
       <Image 
         src={hospital?.image || ""} 
@@ -70,7 +70,7 @@ export const FeaturedCard = ({ hospital }
             {[...Array(Math.floor(hospital?.rating || 2))].map((_, i) => (
               <IoIosStar key={i} fontSize="small" style={{ color: '#f4c150' }} />
             ))}&nbsp;
-            <span>{hospital.rating}</span>
+            <span>{hospital.rating===5 ? "5.0" : hospital.rating}</span>
           </div>
             • 
           <p>{hospital.review} reviews</p>

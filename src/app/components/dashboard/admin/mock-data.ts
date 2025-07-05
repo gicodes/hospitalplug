@@ -109,12 +109,13 @@ export const mockHospitals = [
     },
     location: { lat: 9.05, lng: 7.498},
     distance: 12,
+    isSubscribed: true,
     contact: { 
       phone: '0803-0123-4567'
     },
     image: 'https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG9zcGl0YWxzfGVufDB8fDB8fHww',
-    rating: 4.8,
-    review: 87,
+    rating: 5.0,
+    review: 287,
   },
 
   { 
@@ -152,7 +153,7 @@ export const mockHospitals = [
     isSubscribed: true,
     distance: 52,
     image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aG9zcGl0YWxzfGVufDB8fDB8fHww',
-    rating: 4.5,
+    rating: 5.0,
     review: 120,
   },
   { 

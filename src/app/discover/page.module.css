@@ -327,18 +327,27 @@
     .about {
       display: grid;
       gap: 5px;
-      margin: 5px 0;
+      margin: 10px 0 0;
       font-size: 12px;
 
       .rating {
         gap: 10px;
         display: flex;
-        max-width: 250px;
+        max-width: none;
         align-items: center;
         justify-content: left;
       }
 
       p {gap: 1px}
+
+      a { 
+        padding: 0 10px;
+        display: flex;
+        color: black;
+        font-size: 11px;
+        justify-content: right;
+        text-decoration: underline;
+      }
 
       span { font-weight: 501;}
     }
