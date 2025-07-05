@@ -39,6 +39,7 @@ button {
   cursor: pointer;
   color: inherit;
 }
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   button:hover {
@@ -51,6 +52,16 @@ button {
   html {
     color-scheme: dark;
   }
+}
+
+.bg-warning {
+  background-color: gold;
+  color: #0a0a0a;
+}
+
+.bg-danger {
+  background-color: chocolate;
+  color: #ffffff;
 }
 
 h1 {
@@ -232,7 +243,9 @@ h6 {
 
 .pt-1 { padding-top: 0.5rem;}
 .pt-2 { padding-top: 1rem;}
-.py-1 { padding: 1rem 0;}
+
+.py-1 { padding: 1rem auto;}
+.px-1 { padding: auto 1rem;}
 
 .my-auto {
   margin: auto 0;

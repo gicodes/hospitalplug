@@ -1,0 +1,377 @@
+.page {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    margin: 125px auto 0;
+    padding: 0;
+  }
+}
+
+.discover {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: grid;
+  margin: 0 auto;
+  justify-content: center;
+  max-width: none;
+  min-height: 100vh;
+  background-color: ghostwhite;
+
+  h4 { font-size: 20px; }
+
+  .header {
+    padding: 20px;
+    margin: 0 0 25px;
+    
+    @media screen and (max-width: 444px) {
+      padding: 15px 5px;
+      text-align: center;
+    }
+  }
+
+  .header h3 {
+    font-size: 24px;
+    margin: 10px auto;
+  }
+
+  .header p {font-size: 13.5px; }
+
+  .nearby {
+    color: #303030;
+    margin: 20px 0;
+    padding: 25px;
+    width: 100%;
+    text-align: left;
+    max-width: 500px;
+    background-color: white;
+    
+    @media screen and (max-width: 444px) {
+      padding: 15px 5px;
+      text-align: center;
+      min-width: 323px;
+      max-width: 420px;
+    }
+
+    @media screen and (max-width: 345px) {
+      padding: 15px 5px;
+      text-align: center;
+      max-width: 345px;
+    }
+  }
+  .nearby p { 
+    font-size: 12px;
+    margin: 10px 0;
+    
+    @media screen and (max-width: 444px) {
+      margin: 0;
+      text-align: center;
+    }
+  }
+
+  .filterRow {
+    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0 20px;
+    margin-bottom: 1rem;
+    max-width: 669px;
+
+    @media screen and (max-width: 444px) {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  select, input {
+    border: none;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    min-width: 150px;
+    min-height: 33px;
+    outline: #005bb5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: 444px) {
+      min-width: 100px;
+    }
+  }
+
+  .filterItem {
+    gap: 5px;
+    display: flex;
+    flex-direction: row;
+    min-height: 30px;
+  }
+
+  .hasEmergency {
+    min-width: 150px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 30px;
+    padding: 0 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: 444px) {
+      min-width: 125px;
+    }
+  }
+
+  .hasEmergency span {
+    display: flex;
+    align-items: center;
+    font-size: 13.5px;
+  }
+
+  .hasEmergency input {
+    box-shadow: none;
+    min-width: 10px;
+  }
+
+  .searchBtn {
+    width: 100%;
+    padding: 10px;
+    background: seagreen;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .searchBtn:hover {
+    background: forestgreen;
+  }
+
+  .altSearch {
+    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0 2px;
+    margin-bottom: 1rem;
+    max-width: 669px;
+
+    @media screen and (max-width: 444px) {
+      padding: 0 5px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .altSearch span {
+    margin: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 400;
+    color: darkred;
+  }
+
+  .altSearchBtn {
+    width: 100%;
+    padding: 10px;
+    background: lightslategrey;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 501;
+    font-size: 16px;
+  }
+
+  .altSearchBtn:hover {
+    background: darkslategray;
+  }
+
+  .hospitalSearch {
+    min-width: 180px;
+
+    @media screen and (max-width: 444px) {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+.viewControls {
+  gap: 5px;
+  display: flex;
+  padding: 20px;
+  background-color: transparent;
+
+  button {
+    max-height: 33px;
+  }
+}
+
+.isActive {
+  background-color: #2D68C4;
+  color: white;
+}
+
+.hospitalView {
+  margin: 50px 0;
+  background-color: #f9f9f9;
+  padding: 20px;
+
+  .grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0;
+
+    .card {
+      min-width: 333px;
+    }
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      
+      .card {
+        min-width: 323px;
+      }
+    }
+  }
+
+  .list {
+    display: grid;
+    gap: 2rem;
+
+    .card {
+      max-width: 500px;
+    }
+  }
+
+  li {
+    display: flex;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .hospitalImage {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .main {
+      padding: 20px;
+      width: 100%;
+    }
+
+    .hospitalInfo {
+      gap: 5px;
+      width: 100%;
+      text-align: left;
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .left {
+        gap: 5px;
+        width: 100%;
+        display: grid;
+        font-size: 12px;
+
+        @media screen and (max-width: 444px) {
+          width: 60%;
+        }
+      }
+
+      .right {
+        gap: 7.5px;
+        width: 100%;
+        display: grid;
+        font-size: 11px;
+        justify-content: right;
+
+        .distance {
+          display: flex;
+          font-size: 12.5px;
+          color: #dea500;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .about {
+      display: grid;
+      gap: 5px;
+      margin: 5px 0;
+      font-size: 12px;
+
+      .rating {
+        gap: 10px;
+        display: flex;
+        max-width: 250px;
+        align-items: center;
+        justify-content: left;
+      }
+
+      span { font-weight: 501;}
+    }
+
+    .btnGroup {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+
+      button {
+        flex: 1;
+        margin: 0 5px;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        border: none;
+        transition: background 0.3s ease;
+      }
+
+      .btn-primary {
+        background: #2D68C4;
+        color: #fff;
+
+        &:hover {
+          background: #1c4fa1;
+        }
+      }
+
+      .btn-secondary {
+        background: #f4c150;
+        color: #fff;
+
+        &:hover {
+          background: #dea500;
+        }
+      }
+    }
+  }
+}

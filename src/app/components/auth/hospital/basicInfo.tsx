@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { StepProps } from './authOTP';
-import { hospitalTypes } from '@/app/assets/hospitalTypes';
+import { hospitalTypes } from '@/app/constants/hospitalTypes';
 import styles from '../../../auth/hospital/onboarding/page.module.css';
 import { OnboardingForm } from '@/app/auth/hospital/onboarding/page';
-import { countries, majorCitiesByCountry, statesInNigeria, lgasInNigeria } from '@/app/assets/locations';
+import { countries, majorCitiesByCountry, statesInNigeria, lgasInNigeria } from '@/app/constants/locations';
 
 export default function Step1({ onNext, form, setForm }: StepProps) {
   const handleSubmit = () => {

@@ -32,18 +32,18 @@ export interface OnboardingForm {
     modesOfPayments: Array<'cash' | 'card' | 'insurance' | 'mobileMoney'>;
   };
   documents?: object | unknown;
-  business: {
-    services: string[];
-    registrationNumber: string;
-    taxId: string;
-    rooms: {
-      type: string;
-      spec: string;
-      beds: string | number;
-      baths: string | number;
-      toilets: string | number;
-      price: string | number;
-      remarks: string;
+  business?: {
+    services?: string[];
+    registrationNumber?: string;
+    taxId?: string;
+    rooms?: {
+      type?: string;
+      spec?: string;
+      beds?: string | number;
+      baths?: string | number;
+      toilets?: string | number;
+      price?: string | number;
+      remarks?: string;
     };
   };
   password?: string;

@@ -90,7 +90,7 @@ export const DashboardProvider = ({ role, children }: Props) => {
     } else {
       router.replace(`/dashboard/${role}/${defaultMenu}`);
     }
-  }, [lastSegment, pathname]);
+  }, [lastSegment, pathname, defaultMenu, role, router, validMenus]);
 
   const setSelectedMenu = (menu: string) => {
     setSelectedMenuState(menu);

@@ -12,8 +12,8 @@ import { useAuth } from '@/contexts/auth-context';
 
 const menuLinks = [
   { href: '/', label: 'Home' },
-  { href: '/explore', label: 'Explore' },
   { href: '/discover', label: 'Discover' },
+  // { href: '/explore', label: 'Explore' },
 ];
 
 const Header = () => {

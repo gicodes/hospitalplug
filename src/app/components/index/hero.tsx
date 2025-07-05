@@ -9,7 +9,7 @@ import {
   statesInNigeria,
   majorCitiesByCountry,
   lgasInNigeria
-} from '../../assets/locations';
+} from '../../constants/locations';
 
 const Hero = () => {
   const [country, setCountry] = useState("Nigeria");

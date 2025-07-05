@@ -6,10 +6,10 @@ import { GiHospital } from "react-icons/gi";
 import { useRouter } from 'next/navigation';
 import { MdHealthAndSafety } from 'react-icons/md';
 import  React, { useState, useEffect } from 'react';
+import { useAlert } from '@/contexts/alert-context';
 import styles from '../../../dashboard/admin/page.module.css';
 import { mockActivationRequests, mockHospitals, mockRecentActivities } from './mock-data';
 import { StatCardProps, ActivationRequest, Activity, Hospital } from '@/app/dashboard/admin/types';
-import { useAlert } from '@/contexts/alert-context';
 
 const StatCard: React.FC<StatCardProps> = ({ value, title, icon, bgColor }) => {
   return (
@@ -165,7 +165,9 @@ const AdminHome = () => {
               <option value="pending">Pending</option>
               <option value="suspended">Suspended</option>
             </select>
-            <button className="btn-primary"><FiFilter /></button>
+            <button className="btn-primary">
+              <FiFilter />
+            </button>
           </div>
         </div>
         <div className={styles.tableWrapper}>

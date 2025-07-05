@@ -124,8 +124,6 @@
   .navlink { display: none;}
 }
 
-
-
 @media screen and (max-width: 768px) {
   .burger {
     width: 100%;
@@ -393,7 +391,8 @@
       border: 1px solid #ccc;
       background-color: white;
 
-      transition: border-color 0.2s;
+      outline: none;
+      border: 1px solid #2D68C4;
     }
 
     .selectInput {
@@ -742,7 +741,7 @@
   h4 {
     text-align: center;
     font-size: 1.5rem;
-    color: #202020;
+    color: #505050;
     margin-bottom: 15px;
   }
 
@@ -824,6 +823,36 @@
   margin: 2rem 0;
 }
 /* ABOUT CLOSE */
+
+/* PAGINATION OPEN */
+.pagination {
+  margin: 100px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  button {
+    background: #2D68C4;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    min-height: 33px;
+    cursor: pointer;
+
+    &:disabled {
+      background: #bbb;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    font-size: 0.85rem;
+    color: #333;
+  }
+}
+/* PAGINATION CLOSE */
 
 /* NOT FOUND */
 .notFound {
