@@ -1,13 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
-import Hospital from '@/model/hospital';
 import { IoIosStar } from "react-icons/io";
 import styles from '../../discover/page.module.css';
 import { FaLocationDot } from 'react-icons/fa6';
+import { HospitalCard } from '../index/card';
 
 export const DiscoCard = ({ hospital, flag }: {
-  hospital: Hospital, flag?: string | undefined
+  hospital: HospitalCard, flag?: string | undefined
 }) => {
+
+  const types = hospital.type
+  .map(t => t.charAt(0).toUpperCase() + t.slice(1))
+  .join(', ');
+
   return (
     <div className={styles.card}>
       <Image
@@ -21,10 +26,14 @@ export const DiscoCard = ({ hospital, flag }: {
       />
 
       <div className={styles.main}>
-        <h6>{hospital.name}</h6>
+        <h6>
+          <a href={`/discover/${hospital.id}`}>
+            {hospital.name}
+          </a>
+        </h6>
         <div className={styles.hospitalInfo}>
           <div className={styles.left}>
-            <span>{hospital.type}</span>
+            <span>{types}</span>
             <p>{hospital?.address?.country} &nbsp;{flag}</p>
           </div>
           
@@ -46,11 +55,11 @@ export const DiscoCard = ({ hospital, flag }: {
         <div className={styles.about}>
           <p>{hospital.bio}</p>          
           <div className={styles.rating}>
-            {[...Array(Math.floor(hospital?.rating || 2))].map((_, i) => (
+            <p>{[...Array(Math.floor(hospital?.rating || 2))].map((_, i) => (
               <IoIosStar key={i} fontSize="small" style={{ color: '#f4c150' }} />
-            ))}
+            ))} </p>
             <span>{hospital.rating}</span> • 
-            <p>{hospital.reviews} reviews</p>
+            <p>{hospital.review} reviews</p>
           </div>
         </div>
       </div>

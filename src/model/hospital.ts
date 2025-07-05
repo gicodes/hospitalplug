@@ -21,7 +21,7 @@ interface HospitalAttributes {
     city: string;
     zip: string;
   };
-  type?:Array<'public' | 'private' | 'teaching' | 'clinic' | 'specialist'>;
+  type?: Array<'public' | 'private' | 'teaching' | 'clinic' | 'specialist'>;
   operations?: {
     schedule?: string;
     openingHours?: string;

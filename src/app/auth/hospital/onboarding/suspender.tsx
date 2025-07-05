@@ -11,7 +11,7 @@ import Step456End from '@/app/components/auth/hospital/submit';
 import { OnboardingForm } from './page';
 
 export default function HospitalOnboarding() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [form, setForm] = useState<OnboardingForm>({} as OnboardingForm);
 
   const searchParams = useSearchParams();

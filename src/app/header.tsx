@@ -63,10 +63,10 @@ const Header = () => {
             ) : (
               <div className={styles.flex}>
                 <button className='btn-primary'>
-                  <a href='/auth/hospital/register'>Register a Hospital</a>
+                  <a href='/auth/hospital/register'>Register Hospital</a>
                 </button>
                 <button className='btn-secondary'>
-                  <a href='/auth/hospital'>Hospital Sign in</a>
+                  <a href='/auth/hospital'>Hospital Login</a>
                 </button>
               </div>
             )}

@@ -1,5 +1,7 @@
 // === mockData.ts ===
 
+import { HospitalCard } from "../../index/card";
+
 export const mockActivationRequests = [
   {
     id: 'req1',
@@ -43,109 +45,122 @@ export const mockHospitals = [
   { 
     id: 1, 
     name: "Phoenix Medicals",
-    type: "Hospital",
+    type: ['private'],
     address: {
-      country: "Nigeria", 
-      state: "Enugu", 
-      lga: "Enugu",
+      country: 'Nigeria', 
+      state: 'Enugu', 
+      lga: 'Enugu',
     },
-    contact: { phone: "0801-234-5678"},
-    image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aG9zcGl0YWxzfGVufDB8fDB8fHww",
+    contact: { 
+      phone: '0801-234-5678',
+      website: 'https://myphoenixmed.com'
+    },
+    image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aG9zcGl0YWxzfGVufDB8fDB8fHww',
     rating: 4.5,
-    reviews: 120
+    review: 120
   },
   { 
     id: 2, 
-    name: "General Care Center", 
-    type: "Care Center",
+    name: 'Specialist Center', 
+    type: ['private', 'specialist'],
     address: {
-      country: "Nigeria",
-      state: "Abuja",
-      lga: "Maitama",
+      country: 'Nigeria',
+      state: 'Abuja',
+      lga: 'Maitama',
     },
-    contact: { phone: "0803-0123-4567"},
-    image: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG9zcGl0YWxzfGVufDB8fDB8fHww",
+    contact: { 
+      phone: '0803-0123-4567'
+    },
+    image: 'https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG9zcGl0YWxzfGVufDB8fDB8fHww',
     rating: 4.8,
-    reviews: 87
+    review: 87
   },
   { 
     id: 3, 
-    name: "City Hospital",
-    type: "Hospital",
+    name: 'City Hospital',
+    type: ['public'],
     address: {
-      country: "Nigeria",
-    state: "Lagos",
-    lga: "Victoria Island",
+      country: 'Nigeria',
+      state: 'Lagos',
+      lga: 'Victoria Island',
     },
-    contact: { phone: "0815-175-2112"},
-    image: "https://images.unsplash.com/photo-1670665352618-49ae2ae914ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA%3D%3D",
+    isSubscribed: true,
+    contact: { 
+      phone: '0815-175-2112'
+    },
+    image: 'https://images.unsplash.com/photo-1670665352618-49ae2ae914ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA%3D%3D',
     rating: 4.7,
-    reviews: 145
+    review: 145
   },
   {
     id: 4, 
-    name: "HealthPlus Clinic",
-    type: "Clinic", 
+    name: 'HealthPlus Clinic',
+    type: ['clinic', ],
     address: {
-      country: "Nigeria",
-      state: "FCT, Abuja",
-      lga: "Apo", 
+      country: 'Nigeria',
+      state: 'Abuja',
+      lga: 'Apo', 
     },
-    contact: { phone: "0802-345-6789"},
-    image: "https://images.unsplash.com/photo-1580281657702-257584239a55?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA%3D%3D",
-    rating: 4.3,
-    reviews: 200
+    isSubscribed: true,
+    contact: { 
+      phone: '0802-345-6789'
+    },
+    image: 'https://images.unsplash.com/photo-1580281657702-257584239a55?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA%3D%3D',
+    rating: 4.6,
+    review: 200
   },
   { 
     id: 5, 
-    name: "Wellness Hospital",
-    type: "Hospital", 
+    name: 'Teaching Hospital',
+    type: ['teaching', 'public'],
     address: {
-      country: 'Ghana',
-      state: 'Accra',
+      country: 'Nigeria',
+      state: 'Enugu',
+      lga: 'Nsukka'
     },
+    isSubscribed: true,
     status: 'verified',
-    contact: { phone: "0701-234-5678"},
-    image: "https://images.unsplash.com/photo-1584451049700-ec9b394f3805?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA%3D%3D",
+    contact: { phone: '0701-234-5678'},
+    image: 'https://images.unsplash.com/photo-1584451049700-ec9b394f3805?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGhvc3BpdGFsc3xlbnwwfHwwfHx8MA%3D%3D',
     rating: 4.6,
-    reviews: 95
+    review: 95
   },
   { 
     id: 6, 
-    name: "Carepoint Clinic",
-    type: "Clinic", 
+    name: 'Carepoint Clinic',
+    type: ['private', 'clinic'], 
     address: {
       country: 'Kenya',
       state: 'Nairobi',
     },
     status: 'pending',
-    contact: { phone: "0804-567-8901"},
-    image: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9zcGl0YWx8ZW58MHx8MHx8fDA%3D",
+    contact: { phone: '0804-567-8901'},
+    image: 'https://images.unsplash.com/photo-1512678080530-7760d81faba6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9zcGl0YWx8ZW58MHx8MHx8fDA%3D',
     rating: 4.4,
-    reviews: 110
+    review: 110
   },
     {
     id: 7,
-    name: "Urban Health Hub",
-    type: "Specialist",
+    name: 'Urban Health Hub',
+    type: ['public', 'specialist'],
     address: { country: "South Africa", state: "Cape Town" },
     location: { lat: -33.9249, lng: 18.4241 },
     distance: 890,
     contact: { phone: "0712-345-6789" },
     image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aG9zcGl0YWx8ZW58MHx8MHx8fDA%3D",
     rating: 4.2,
-    reviews: 75
+    review: 75
   },
   {
     id: 8,
     name: "Royal Wellness",
-    type: "Clinic",
+    type: ['clinic'],
     address: { country: "Ghana", state: "Accra" },
     location: { lat: 5.6037, lng: -0.1870 },
     distance: 430,
     contact: { phone: "0734-567-8910" },
     image: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9zcGl0YWx8ZW58MHx8MHx8fDA%3D",
     rating: 4.9,
-    reviews: 150
+    review: 150
   }
-];
+] satisfies HospitalCard[];

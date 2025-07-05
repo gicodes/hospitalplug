@@ -6,7 +6,9 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: {
   totalPages: number,
   onPageChange: (page: number) => void
 }) {
-  return (
+  if (totalPages < 1) {
+    return ;
+  } else return (
     <div className={styles.pagination}>
       <button
         disabled={currentPage === 1}
