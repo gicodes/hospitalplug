@@ -41,7 +41,7 @@ export const DiscoCard = ({ hospital, flag }: {
             <div className={styles.distance}>
               <p>
               {hospital.distance !== undefined
-                ? `${Math.round(hospital.distance)} meters away`
+                ? `${Math.round(hospital.distance)} miles away`
                 : 'Distance unavailable'}
             </p>
             </div>
