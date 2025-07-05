@@ -11,6 +11,7 @@ import { RiGridFill, RiListOrdered } from 'react-icons/ri';
 import { COUNTRY_FLAGS } from "@/app/constants/countryFlags";
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { HospitalCard } from '../index/card';
+import { mockHospitals } from '../dashboard/admin/mock-data';
 
 const HOSPITAL_TYPES = ['public', 'private', 'teaching', 'clinic', 'specialist'];
 const SCHEDULES = ['24/7', '8 hours (Mon - Fri)', '12-16 hours', '7 days'];
@@ -20,7 +21,7 @@ export default function Geolocation() {
 
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [position, setPosition] = useState<{ lat: number | null; lng: number | null }>({ lat: null, lng: null });
-  const [hospitals, setHospitals] = useState<Hospital[]>([]);
+  const [hospitals, setHospitals] = useState<HospitalCard[]>(mockHospitals);
   const [filters, setFilters] = useState({
     type: '',
     schedule: '',
