@@ -29,7 +29,6 @@ const HowItWorks = () => {
     <div className={styles.howItWorks}>
       <div className='mx-auto'>
         <h4>How to use Hospital Plug</h4>
-        <p>You can start mentally. As they say, Good health is mental, physical and I dare say, spiritual</p>
       </div>
       <div className={styles.steps}>
         { steps.map((step, index) => (

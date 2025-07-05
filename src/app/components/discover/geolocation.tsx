@@ -2,7 +2,6 @@
 
 import api from '@/lib/axios';
 import { DiscoCard } from './card';
-import Hospital from '@/model/hospital';
 import { useAlert } from '@/contexts/alert-context';
 import styles from '../../discover/page.module.css';
 import Pagination from '@/app/assets/pagination';
